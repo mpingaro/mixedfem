@@ -18,9 +18,10 @@ for k = 1:nelem
     p(2,[1 2]) = coor( el(k,2),[1 2]) ;
     p(3,[1 2]) = coor( el(k,3),[1 2]) ;
     p(4,[1 2]) = coor( el(k,4),[1 2]) ;
-    % Compute the bilinear form a(sigma,tau), b(u, div(tau)) & the load (f,v) 
+    % Compute the bilinear form a(epsilon,epsilon), b(u, div(p)) & the load (f,v) 
     [AELEM,BELEM,load] = stiffness_mini(p,f,cf) ;
-    
+
+    % Corrispondence matrix    
     mc([1,2]) = [2*el(k,1)-1, 2*el(k,1)] ;
     mc([3,4]) = [2*el(k,2)-1, 2*el(k,2)] ;
     mc([5,6]) = [2*el(k,3)-1, 2*el(k,3)] ;

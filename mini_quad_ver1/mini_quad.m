@@ -10,9 +10,8 @@
 % Dirichlet condition is u_D = 0 on boundary domain                       %
 %                                                                         %
 % The Weak Formulation is:                                                %
-% a(C^(-1)Sigma,Tau ) + b( u,div(Tau) ) + c( eta, as(tau) ) = 0           %
-%                          b( v, div(Sigma) )               = ( f,v )     %
-%                          c( psi, as(sigma) )              = 0           %
+% a(epsilon(u),epsilon(v)) + b(p,div(u) ) = ( f,v )                       %
+%                            b(q,div(p) ) = 0                             %
 % ----------------------------------------------------------------------- %
 
 %% INPUT DATI 
@@ -23,7 +22,7 @@ young   = 1;                     % modulo di Young
 ndx     = 2;                     % numero suddivisioni in x
 ndy     = 1;                     % numero suddivisioni in y
 f(1,1) = 0;                      % load distribiuted direction x
-f(2,1) = -0.1;                      % load distribiuted direction y
+f(2,1) = -0.1;                   % load distribiuted direction y
 cf = 1 ;
 % ----------------------------------------------------------------------- %
 

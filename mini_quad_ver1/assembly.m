@@ -27,9 +27,9 @@ for k = 1:nelem
     mc([3,4]) = [2*el(k,2)-1, 2*el(k,2)] ;
     mc([5,6]) = [2*el(k,3)-1, 2*el(k,3)] ;
     mc([7,8]) = [2*el(k,4)-1, 2*el(k,4)] ;
-    ind = 2*nnod+3*(k-1) ;
+    ind = 2*nnod+3*(k-1) + 1 ;
     mc([9,10,11]) = [ind, ind+1, ind+2];
-   
+
     for i = 1:11
         for j = 1:11
             A(mc(1,i),mc(1,j)) = A(mc(1,i),mc(1,j)) + AELEM(i,j) ;
@@ -38,13 +38,13 @@ for k = 1:nelem
         F(mc(1,i),1) = F(mc(1,i),1) + load(i,1) ;
         
         for jj=1:4
-            B(mc(1,i),el(k,jj)) = B(mc(1,i),el(k,jj)) + BELEM(i,jj) ;
+            B(mc(1,i),el(k,jj)) = B(mc(1,i),el(k,jj)) - BELEM(i,jj) ;
         end
         
     end
 end
 % GLOBAL SYSTEM
 %
-K = [A, -B; B',sparse(nnod,nnod)] ;
+K = [A, B; B',sparse(nnod,nnod)] ;
 
 return

@@ -9,8 +9,8 @@
 % Dirichlet condition is u_D = 0 on boundary domain                       %
 %                                                                         %
 % The Weak Formulation is:                                                %
-% a(epsilon(u),epsilon(v)) + b(p,div(u) ) = ( f,v )                       %
-%                            b(q,div(p) ) = 0                             %
+% a(epsilon(u),epsilon(v)) - b(p,div(u) ) = ( f,v )                       %
+%                          - b(q,div(p) ) = 0                             %
 % ----------------------------------------------------------------------- %
 
 %% INPUT DATI 
@@ -18,11 +18,11 @@ clear all; close all; clc;
 length  = 5;                     % lunghezza trave
 heigth  = 1;                     % altezza trave
 young   = 1;                     % modulo di Young
-ndx     = 5;                     % numero suddivisioni in x
-ndy     = 1;                     % numero suddivisioni in y
+ndx     = 10;                    % numero suddivisioni in x
+ndy     =  2;                    % numero suddivisioni in y
 f(1,1) = 0;                      % load distribiuted direction x
-f(2,1) = -1.0;                   % load distribiuted direction y
-cf = 50 ;
+f(2,1) = -0.04;                  % load distribiuted direction y
+cf = 1 ;
 % ----------------------------------------------------------------------- %
 
 % Geometry

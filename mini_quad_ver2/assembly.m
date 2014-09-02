@@ -4,7 +4,7 @@ function [K,F] = assembly(coor,el,cf,f)
 
 nelem = size(el,1) ;
 nnod = size(coor,1) ;
-nd = 2*nnod+3*nelem ;
+nd = 2*nnod+4*nelem ;
 nt = nd + nnod ;
 
 %% LAPLACE RT_0 QUAD ELEMENT
@@ -12,7 +12,7 @@ K = sparse(nt,nt) ;
 A = sparse(nd,nd) ;
 B = sparse(nd,nnod) ;
 F = sparse(nt,1) ;
-mc = zeros(1,11) ;
+mc = zeros(1,12) ;
 for k = 1:nelem
     %% Physic coordiantes points of the elements
     p(1,[1 2]) = coor( el(k,1),[1 2]) ;
@@ -27,11 +27,11 @@ for k = 1:nelem
     mc([3,4]) = [2*el(k,2)-1, 2*el(k,2)] ;
     mc([5,6]) = [2*el(k,3)-1, 2*el(k,3)] ;
     mc([7,8]) = [2*el(k,4)-1, 2*el(k,4)] ;
-    ind = 2*nnod+3*(k-1) + 1 ;
-    mc([9,10,11]) = [ind, ind+1, ind+2];
+    ind = 2*nnod+4*(k-1) + 1 ;
+    mc([9,10,11,12]) = [ind, ind+1, ind+2, ind+3];
 
-    for i = 1:11
-        for j = 1:11
+    for i = 1:12
+        for j = 1:12
             A(mc(1,i),mc(1,j)) = A(mc(1,i),mc(1,j)) + AELEM(i,j) ;
         end
         

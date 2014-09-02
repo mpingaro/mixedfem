@@ -5,9 +5,9 @@ function [AELEM,BELEM,b_load] = stiffness_mini(point,f,cf)
 [gauss_p, gauss_w, npg] = gauss_quad() ;
 
 %% ELEMENTARY MATRIX A & B
-AELEM = zeros(11,11) ; 
-BELEM = zeros(11,4) ;
-b_load = zeros(11,1) ;
+AELEM = zeros(12,12) ; 
+BELEM = zeros(12,4) ;
+b_load = zeros(12,1) ;
 
 for k = 1:npg
     x = gauss_p(1,k) ; 
@@ -22,17 +22,16 @@ for k = 1:npg
     psi(1,4) = 0.25*(1-x)*(1+y) ;
     % Bouble functions
     psi(1,5) = (1-x^2)*(1-y^2) ; 
-    psi(1,6) = x*psi(1,5) ;
-    psi(1,7) = y*psi(1,5) ;
+    psi(1,6) = (x+y)*psi(1,5) ;
 
     % Gradient of shape functions 
     
     % deriv along first direction
-    grad(1,1:7) = [-(1-y), 1-y, 1+y, -(1+y), -8*x*(1-y^2),...
-    4*(1-3*x^2)*(1-y^2), -8*x*(y-y^3)].*0.25 ;
+    grad(1,1:6) = [-(1-y), 1-y, 1+y, -(1+y),...
+    -8*x*(1-y^2), 4*(1-3*x^2-2*x*y)*(1-y^2)].*0.25 ;
     % deriv along second direction
-    grad(2,1:7) = [-(1-x), -(1+x), 1+x, 1-x, -8*y*(1-x^2),...
-    -8*y*(x-x^3), 4*(1-3*y^2)*(1-x^2)].*0.25 ;
+    grad(2,1:6) = [-(1-x), -(1+x), 1+x, 1-x,...
+    -8*y*(1-x^2), 4*(1-x^2)*(1-y^2)-8*y*(x-x^3+y-y*x^2)].*0.25 ;
 
     % Jacobian Matrix
     %J(1,1) = sum( grad(1,1:4)*point(1:4,1) ) ; % x_u
@@ -71,11 +70,12 @@ for k = 1:npg
     epsi(:,:,9) = [grad_u(1,5), grad_u(2,5)*0.5; grad_u(2,5)*0.5, 0] ;
     epsi(:,:,10) = [0, grad_u(1,5)*0.5; grad_u(1,5)*0.5, grad_u(2,5)] ;
   
-    epsi(:,:,11) = [grad_u(1,6), 0.5*(grad_u(1,7)+grad_u(2,6)) ; 0.5*(grad_u(1,7)+grad_u(2,6)), grad_u(2,7)] ;
+    epsi(:,:,11) = [grad_u(1,6), grad_u(2,6)*0.5; grad_u(2,6)*0.5, 0] ;
+    epsi(:,:,12) = [0, grad_u(1,6)*0.5; grad_u(1,6)*0.5, grad_u(2,6)] ;
 
     %% AELEM 
-    for i = 1:11
-        for j = 1:11
+    for i = 1:12
+        for j = 1:12
             AELEM(i,j) = AELEM(i,j) + ...
             ( cf * trace( epsi(:,:,i)'*epsi(:,:,j)) )*w*DJ ; 
         end
@@ -92,7 +92,9 @@ for k = 1:npg
     b_load(8,1) = b_load(8,1) + w * f(2,1) * psi(1,4) * DJ ;
     b_load(9,1) = b_load(9,1) + w * f(1,1) * psi(1,5) * DJ ;
     b_load(10,1) = b_load(10,1) + w * f(2,1) * psi(1,5) * DJ ;
-    b_load(11,1) = b_load(11,1) + w * ( f(1,1) * psi(1,6) + f(2,1) * psi(1,7) ) * DJ ;
+    b_load(11,1) = b_load(11,1) + w * f(1,1) * psi(1,6) * DJ ;
+    b_load(12,1) = b_load(12,1) + w * f(2,1) * psi(1,6) * DJ ;
+
 
     %% BELEM
     for nb = 1:4
@@ -106,7 +108,8 @@ for k = 1:npg
         BELEM(8,nb) = BELEM(8,nb) + w*( psi(1,nb)*grad(2,4) ) ;
         BELEM(9,nb) = BELEM(9,nb) + w*( psi(1,nb)*grad(1,5) ) ;
         BELEM(10,nb) = BELEM(10,nb) + w*( psi(1,nb)*grad(2,5) ) ;
-        BELEM(11,nb) = BELEM(11,nb) + w*( psi(1,nb)*( grad(1,6)+grad(2,7) ) ) ;
+        BELEM(11,nb) = BELEM(11,nb) + w*( psi(1,nb)*grad(1,6) ) ;
+        BELEM(12,nb) = BELEM(12,nb) + w*( psi(1,nb)*grad(2,6) ) ;
     end
 end
 

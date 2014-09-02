@@ -1,3 +1,5 @@
+% by Marco Pingaro
+
 function [coordinates,element,bc1,bc2,bc3,bc4] = beam(length,heigth,ndx,ndy)
 
 %% Coorinates

@@ -1,3 +1,4 @@
+% by Marco Pingaro
 
 function [K,F] = assembly(coor,el,cf,f)
 
@@ -44,6 +45,6 @@ for k = 1:nelem
 end
 % GLOBAL SYSTEM
 %
-K = [A, B; B',sparse(nnod,nnod)] ;
+K = [A, -B; B',sparse(nnod,nnod)] ;
 
 return

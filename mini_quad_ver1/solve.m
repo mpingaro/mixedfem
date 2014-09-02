@@ -1,3 +1,4 @@
+% by Marco Pingaro
 
 function [spost,pres] = solve(K,F,bc,nd,np)
 

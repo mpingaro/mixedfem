@@ -1,3 +1,5 @@
+% by Marco Pingaro
+
 function [gauss_p,gauss_w,npg] = gauss_quad()  
 
 %% Gauss Quadrature

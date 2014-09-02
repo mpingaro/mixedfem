@@ -1,3 +1,5 @@
+% by Marco Pingaro
+
 function [AELEM,BELEM,b_load] = stiffness_mini(point,f,cf)  
 
 [gauss_p, gauss_w, npg] = gauss_quad() ;
@@ -45,14 +47,8 @@ for k = 1:npg
     JJ(1,2) = -J(1,2)/DJ ;
     JJ(2,1) = -J(2,1)/DJ ; 
     JJ(2,2) = J(1,1)/DJ ;
-      
-    grad_u(:,1) = JJ'*grad(:,1) ;
-    grad_u(:,2) = JJ'*grad(:,2) ;
-    grad_u(:,3) = JJ'*grad(:,3) ;
-    grad_u(:,4) = JJ'*grad(:,4) ;
-    grad_u(:,5) = JJ'*grad(:,5) ;
-    grad_u(:,6) = JJ'*grad(:,6) ;
-    grad_u(:,7) = JJ'*grad(:,7) ;
+    % Trasformation gradient  
+    grad_u = JJ'*grad ;
 
     % Strain
     epsi(:,:,1) = [grad_u(1,1), grad_u(2,1)*0.5; grad_u(2,1)*0.5, 0] ;
@@ -97,23 +93,16 @@ for k = 1:npg
     for nb = 1:4
         BELEM(1,nb) = BELEM(1,nb) + w*( psi(1,nb)*grad(1,1) ) ;
         BELEM(2,nb) = BELEM(2,nb) + w*( psi(1,nb)*grad(2,1) ) ;
-
         BELEM(3,nb) = BELEM(3,nb) + w*( psi(1,nb)*grad(1,2) ) ;
         BELEM(4,nb) = BELEM(4,nb) + w*( psi(1,nb)*grad(2,2) ) ;
-
         BELEM(5,nb) = BELEM(5,nb) + w*( psi(1,nb)*grad(1,3) ) ;
         BELEM(6,nb) = BELEM(6,nb) + w*( psi(1,nb)*grad(2,3) ) ;
-
         BELEM(7,nb) = BELEM(7,nb) + w*( psi(1,nb)*grad(1,4) ) ;
         BELEM(8,nb) = BELEM(8,nb) + w*( psi(1,nb)*grad(2,4) ) ;
-
         BELEM(9,nb) = BELEM(9,nb) + w*( psi(1,nb)*grad(1,5) ) ;
         BELEM(10,nb) = BELEM(10,nb) + w*( psi(1,nb)*grad(2,5) ) ;
-
         BELEM(11,nb) = BELEM(11,nb) + w*( psi(1,nb)*( grad(1,6)+grad(2,7) ) ) ;
     end
-
-
 end
 
 return

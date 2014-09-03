@@ -46,12 +46,13 @@ for k = 1:npg
     J(2,2) = sum( grad(2,1:4)*point(1:4,2) ) ; % y_v
   
     % Determinant of Jacobian Matrix
-    DJ = J(1,1)*J(2,2)-J(1,2)*J(2,1) ;
+    DJ = J(1,1)*J(2,2)-J(1,2)*J(2,1) ; 
     % Inverse transpose of Jacobian Matrix
     JJ(1,1) =  J(2,2)/DJ ;  
     JJ(1,2) = -J(2,1)/DJ ;
     JJ(2,1) = -J(1,2)/DJ ; 
     JJ(2,2) =  J(1,1)/DJ ;
+
     % Trasformation gradient  
     grad_u = JJ*grad ;
 

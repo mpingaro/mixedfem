@@ -15,14 +15,14 @@
 
 %% INPUT DATI 
 clear all; close all; clc;
-length  = 5;                     % lunghezza trave
+length  = 2;                     % lunghezza trave
 heigth  = 1;                     % altezza trave
 young   = 1;                     % modulo di Young
-ndx     = 50;                    % numero suddivisioni in x
-ndy     = 10;                    % numero suddivisioni in y
+ndx     = 10;                    % numero suddivisioni in x
+ndy     =  5;                    % numero suddivisioni in y
 f(1,1) = 0;                      % load distribiuted direction x
 f(2,1) = -0.04;                  % load distribiuted direction y
-cf = 1 ;
+cf = young/1.5 ;
 % ----------------------------------------------------------------------- %
 
 % Geometry

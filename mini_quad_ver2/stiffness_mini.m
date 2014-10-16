@@ -57,19 +57,14 @@ for k = 1:npg
     % Strain
     epsi(:,:,1) = [grad_u(1,1), grad_u(2,1)*0.5; grad_u(2,1)*0.5, 0] ;
     epsi(:,:,2) = [0, grad_u(1,1)*0.5; grad_u(1,1)*0.5, grad_u(2,1)] ;
-    
     epsi(:,:,3) = [grad_u(1,2), grad_u(2,2)*0.5; grad_u(2,2)*0.5, 0] ;
     epsi(:,:,4) = [0, grad_u(1,2)*0.5; grad_u(1,2)*0.5, grad_u(2,2)] ;
-
     epsi(:,:,5) = [grad_u(1,3), grad_u(2,3)*0.5; grad_u(2,3)*0.5, 0] ;
     epsi(:,:,6) = [0, grad_u(1,3)*0.5; grad_u(1,3)*0.5, grad_u(2,3)] ;
-
     epsi(:,:,7) = [grad_u(1,4), grad_u(2,4)*0.5; grad_u(2,4)*0.5, 0] ;
     epsi(:,:,8) = [0, grad_u(1,4)*0.5; grad_u(1,4)*0.5, grad_u(2,4)] ;
-    
     epsi(:,:,9) = [grad_u(1,5), grad_u(2,5)*0.5; grad_u(2,5)*0.5, 0] ;
     epsi(:,:,10) = [0, grad_u(1,5)*0.5; grad_u(1,5)*0.5, grad_u(2,5)] ;
-  
     epsi(:,:,11) = [grad_u(1,6), grad_u(2,6)*0.5; grad_u(2,6)*0.5, 0] ;
     epsi(:,:,12) = [0, grad_u(1,6)*0.5; grad_u(1,6)*0.5, grad_u(2,6)] ;
 
@@ -77,7 +72,8 @@ for k = 1:npg
     for i = 1:12
         for j = 1:12
             AELEM(i,j) = AELEM(i,j) + ...
-            ( cf * trace( epsi(:,:,i)'*epsi(:,:,j)) )*w*DJ ; 
+            cf*( epsi(1,1,i)*epsi(1,1,j)+epsi(2,2,i)*epsi(2,2,j)+...
+            2*epsi(1,2,i)*epsi(1,2,j) )*w*DJ ; 
         end
     end
 

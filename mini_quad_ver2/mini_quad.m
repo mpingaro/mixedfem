@@ -1,7 +1,7 @@
 
 %% --------------------------------------------------------------------- %%
 % ------------------------ MIXED ELEMENT MINI QUAD ---------------------- %
-% ---------------   ( by Marco Pingaro & Daniele Boffi )   -------------- %
+% -----------------------   ( by Marco Pingaro )   ---------------------- %
 % Phd Student IUSS Pavia,                                                 %
 % mail  : marco.pingaro@iusspavia.it                                      %
 % ----------------------------------------------------------------------- %
@@ -15,14 +15,13 @@
 
 %% INPUT DATI 
 clear all; close all; clc;
-length  = 2;                     % lunghezza trave
+length  = 5;                     % lunghezza trave
 heigth  = 1;                     % altezza trave
-young   = 1;                     % modulo di Young
-ndx     = 10;                    % numero suddivisioni in x
-ndy     =  5;                    % numero suddivisioni in y
+young   = 50;                    % modulo di Young
+ndx     = 20;                    % numero suddivisioni in x
+ndy     =  6;                    % numero suddivisioni in y
 f(1,1) = 0;                      % load distribiuted direction x
 f(2,1) = -0.04;                  % load distribiuted direction y
-cf = young/1.5 ;
 % ----------------------------------------------------------------------- %
 
 % Geometry
@@ -32,12 +31,12 @@ nnod  = size(coordinates,1) ;
 ngdld = 2*nnod+4*nelem ;
 ngdlp = nnod ;
 ngdlt = ngdld + ngdlp ;
-
+cf = young/1.5 ;
 % Assembly global system
 [K,load] = assembly(coordinates,element,cf,f) ; 
 
 % Dirichlet boundary conditions
-bc = [bc3,bc4] ;
+bc = [bc3] ;
 
 % Solve linear system
 [spost,pres] = solve(K,load,bc,ngdld,ngdlp) ;

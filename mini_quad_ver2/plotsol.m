@@ -1,8 +1,8 @@
 % by Marco Pingaro
+% PLOT SOLUTION 
 
 function plotsol(coordinates,spost,pres,ndx,ndy,nnod)
 
-% PLOT SOLUTION 
 x = reshape(coordinates(:,1),ndx+1,ndy+1) ;
 y = reshape(coordinates(:,2),ndx+1,ndy+1) ;
 spost_x = spost(1:2:2*nnod-1) ;

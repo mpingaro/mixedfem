@@ -40,9 +40,9 @@ for k = 1:npg
     sig(:,4) = J*[-0.5+0.5*x; 0]/DJ ;                % Shape 4 RT0
 
     % Bouble function 1
-    sig(:,5) = JJ*[2*x*(y^2-1); 2*y*(x^2-1)] ;
+    sig(:,5) = J*[2*x*(y^2-1); 2*y*(x^2-1)]/DJ ;
     % Bouble function 2 
-    sig(:,6) = JJ*[(1-3*x^2-2*x*y)*(1-y^2); (1-3*y^2-2*x*y)*(1-x^2)] ;
+    sig(:,6) = J*[(1-3*x^2-2*x*y)*(1-y^2); (1-3*y^2-2*x*y)*(1-x^2)]/DJ ;
 
     % Tensor functions  
     sigt = zeros(2,2,12) ;

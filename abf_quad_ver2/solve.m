@@ -1,16 +1,13 @@
 % by Marco Pingaro
 
-function [stress,spost,rot] = solve(K,F,bc,ns,nd,nr)
-
-% ASSIGN BOUNDARY CONDITION (sigma * n = 0)
-for i = 1: size(bc,2)
-    K(bc(1,i),:) = 0 ;
-    K(bc(1,i),bc(1,i)) = 1 ;
-end
+function [stress,spost,rot] = solve(K,F,bn,ns,nd,nr)
 
 % ASSIGN BOUNDARY CONDITION (sigma * n = t)
-%
-% Da fare!
+for i = 1: size(bn,2)
+    K(bn(1,i),:) = 0 ;
+    K(bn(1,i),bn(1,i)) = 1 ;
+    F(bn(1,i),1) = bn(2,i) ;
+end
 
 %% SOLUTION OF LINEAR SYSTEM
 soluz = K\F ;

@@ -20,14 +20,31 @@
 
 %% INPUT DATI 
 clear all; close all; clc;
-length  = 5 ;                      % lunghezza trave
+% Geometry
+length  = 4 ;                      % lunghezza trave
 heigth  = 1 ;                      % altezza trave
 young   = 50 ;                     % modulo di Young
-poisson = 0.2 ;                    % modulo di Poisson
-ndx     = 20 ;                     % numero suddivisioni in x
-ndy     = 5 ;                      % numero suddivisioni in y
-f(1,1) =  0 ;                      % load distribiuted direction x
-f(2,1) = -1 ;                      % load distribiuted direction y
+poisson = 0.49999 ;                % modulo di Poisson
+ndx     = 10 ;                     % numero suddivisioni in x
+ndy     =  4 ;                     % numero suddivisioni in y
+% Load
+f(1,1) = 0.00 ;                    % load distribiuted direction x
+f(2,1) = 0.05 ;                    % load distribiuted direction y
+% 
+g(1,1) = 0.0 ;                     % traction load direction x edge 1  
+g(1,2) = 0.0 ;                     % traction load direction y edge 1
+%
+g(2,1) = 0.0 ;                     % traction load direction x edge 2
+g(2,2) = 0.0 ;                     % traction load direction y edge 2
+%
+g(3,1) = 0.0 ;                     % traction load direction x edge 3
+g(3,2) = 0.0 ;                     % traction load direction y edge 3
+%
+g(4,1) = 0.0 ;                     % traction load direction x edge 4
+g(4,2) = 0.0 ;                     % traction load direction y edge 4
+% Boundary conditions
+[bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
+bn = [bn1,bn2,bn4] ;
 % ----------------------------------------------------------------------- %
 lambda = young*poisson/((1+poisson)*(1-2*poisson)) ;
 mu = young/(2*(1+poisson)) ;
@@ -46,55 +63,12 @@ ngdlt = ngdls + ngdd + ngdr ;
 % Assembly global system
 [K,load] = assembly(coordinates,element,mc,cf,f) ; 
 
-% Boundary conditions
-[bc1,bc2,bc3,bc4] = neumann(ndx,ndy) ;
-bc = [bc1,bc2] ;
-
 % Solve linear system
-[stress,spost,rot] = solve(K,load,bc,ngdls,ngdd,ngdr) ;
+[stress,spost,rot] = solve(K,load,bn,ngdls,ngdd,ngdr) ;
 
-% PLOT SOLUTION DISPLACEMENT   
-x = reshape(coordinates(:,1),ndx+1,ndy+1) ;
-y = reshape(coordinates(:,2),ndx+1,ndy+1) ;
-figure, surf(x,y,zeros(ndx+1,ndy+1))
-axis equal
-view(0,90)
+% Compute deformate
+def = defomesh(spost,element,coordinates) ;
 
-% Displacement X
-figure
-for i = 1 :nelem
-    x = coordinates(element(i,1:4),1) ;
-    y = coordinates(element(i,1:4),2) ;
-    spost_x = spost(1:6:ngdd-4) ;
-    surf(x,y,spost_x(i,1)*ones(4,4))
-    hold on
-end
-axis equal
-view(60,80)
-
-% Displacement Y
-figure
-for i = 1:nelem
-    x = coordinates(element(i,1:4),1) ;
-    y = coordinates(element(i,1:4),2) ;
-    spost_y = spost(4:6:ngdd-2) ; 
-    surf(x,y,spost_y(i,1)*ones(4,4))
-    hold on
-end
-axis equal
-view(60,80)
-
-% Rotation
-X = zeros(1,ndx+1) ;
-Y = zeros(1,ndy+1) ;
-Z_rot = zeros(ndx+1,ndy+1) ;
-figure
-for i = 1:nelem
-    X = [1:ndx+1] ;
-    Y = [1:ndy+1] ;
-    Z_rot = reshape(rot,ndy+1,ndx+1) ;
-    hold on
-end
-surf(X,Y,Z_rot)
-axis equal
-view(60,80)
+% Plot solution
+plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
+% ------------------------------------------------------------------------ %

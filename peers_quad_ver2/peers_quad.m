@@ -42,8 +42,6 @@ g(3,2) =   0.0 ;                    % traction load direction y edge 3
 g(4,1) =   0.0 ;                    % traction load direction x edge 4
 g(4,2) =   0.0 ;                    % traction load direction y edge 4
 % ----------------------------------------------------------------------- %
-dlx = length/ndx ;
-dly = heigth/ndy ;
 lambda = young*poisson/((1+poisson)*(1-2*poisson)) ;
 mu = young/(2*(1+poisson)) ;
 cf(1,1) = 1/(2*mu) ;

@@ -8,8 +8,8 @@ y = reshape(coordinates(:,2),ndx+1,ndy+1) ;
 def_x = reshape(def(:,1),ndx+1,ndy+1) ;
 def_y = reshape(def(:,2),ndx+1,ndy+1) ;
 
-spost_x = spost(1:2:2*ndx*ndy-1) ;
-spost_y = spost(2:2:2*ndx*ndy) ;
+spost_x = spost(1:6:6*ndx*ndy-5) ;
+spost_y = spost(4:6:6*ndx*ndy) ;
 rot = reshape(rot,ndx+1,ndy+1);
 
 % Undeformed mesh

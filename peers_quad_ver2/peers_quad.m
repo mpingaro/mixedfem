@@ -20,18 +20,19 @@
 
 %% INPUT DATI 
 clear all; close all; clc;
-length  =  5 ;                      % lunghezza trave
+% Geometry
+length  =  4 ;                      % lunghezza trave
 heigth  =  1 ;                      % altezza trave
 young   = 50 ;                      % modulo di Young
 poisson = 0.49999 ;                 % modulo di Poisson
-ndx     =  20 ;                     % numero suddivisioni in x
-ndy     =   5 ;                     % numero suddivisioni in y
-%
-f(1,1)  =  0.0 ;                    % load distribiuted direction x
-f(2,1)  =  0.0 ;                    % load distribiuted direction y
+ndx     =  10 ;                     % numero suddivisioni in x
+ndy     =   4 ;                     % numero suddivisioni in y
+% Load
+f(1,1)  =  0.00 ;                   % load distribiuted direction x
+f(2,1)  = -0.05 ;                   % load distribiuted direction y
 %
 g(1,1) =   0.0 ;                    % traction load direction x edge 1
-g(1,2) =   0.1 ;                    % traction load direction y edge 1
+g(1,2) =   0.0 ;                    % traction load direction y edge 1
 %
 g(2,1) =   0.0 ;                    % traction load direction x edge 2
 g(2,2) =   0.0 ;                    % traction load direction y edge 2
@@ -41,6 +42,9 @@ g(3,2) =   0.0 ;                    % traction load direction y edge 3
 %
 g(4,1) =   0.0 ;                    % traction load direction x edge 4
 g(4,2) =   0.0 ;                    % traction load direction y edge 4
+% Boundary conditions (Neumann)
+[bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
+bn = [bn1,bn2,bn4] ;
 % ----------------------------------------------------------------------- %
 lambda = young*poisson/((1+poisson)*(1-2*poisson)) ;
 mu = young/(2*(1+poisson)) ;
@@ -59,10 +63,6 @@ ngdlt = ngdls + ngdd + ngdr ;
 
 % Assembly global system
 [K,load] = assembly(coordinates,element,mc,cf,f) ; 
-
-% Boundary conditions (Neumann)
-[bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
-bn = [bn1,bn2,bn4] ;
 
 % Solve linear system
 [stress,spost,rot] = solve(K,load,bn,ngdls,ngdd,ngdr) ;

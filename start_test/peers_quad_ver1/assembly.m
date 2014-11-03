@@ -19,11 +19,11 @@ for k = 1:nelem
     p(2,[1 2]) = coor( el(k,2),[1 2]) ;
     p(3,[1 2]) = coor( el(k,3),[1 2]) ;
     p(4,[1 2]) = coor( el(k,4),[1 2]) ;
-    s = mc(k,13) ;
+    s = mc(k,12) ;
     % Compute the bilinear form a(sigma,tau), b(u, div(tau)) & the load (f,v) 
     [AELEM,BELEM,CELEM,load] = stiffness_peers(p,f,s,cf) ;
-    for i = 1:12
-        for j = 1:12
+    for i = 1:11
+        for j = 1:11
             A(mc(k,i),mc(k,j)) = A(mc(k,i),mc(k,j)) + AELEM(i,j) ;
         end
         for jj=1:4

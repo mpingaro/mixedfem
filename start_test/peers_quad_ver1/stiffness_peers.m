@@ -34,10 +34,10 @@ for k = 1:npg
     % Determinant of Jacobian Matrix
     DJ = J(1,1)*J(2,2)-J(1,2)*J(2,1) ;
     % Inverse of Jacobian Matrix
-    JJ(1,1) = J(2,2)/DJ ;  
-    JJ(1,2) = -J(2,1)/DJ ;
-    JJ(2,1) = -J(1,2)/DJ ; 
-    JJ(2,2) = J(1,1)/DJ ;
+    %JJ(1,1) = J(2,2)/DJ ;  
+    %JJ(1,2) = -J(2,1)/DJ ;
+    %JJ(2,1) = -J(1,2)/DJ ; 
+    %JJ(2,2) = J(1,1)/DJ ;
       
     %% --- Stress
     sig(:,1) = J*[ 0; -0.5+0.5*y ]/DJ ;                             % Shape 1 RT0
@@ -61,7 +61,6 @@ for k = 1:npg
     
     sigt(:,:,9)  = [ sig(2,5), -sig(1,5); 0, 0 ] ;
     sigt(:,:,10) = [ 0, 0; sig(2,5), -sig(1,5) ] ;
-    
     sigt(:,:,11) = [ sig(2,6), -sig(1,6); sig(2,7), -sig(1,7) ] ;
 
     % AELEM 

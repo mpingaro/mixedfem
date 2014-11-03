@@ -30,7 +30,7 @@ for k = 1:nelem
             C(mc(k,i),el(k,jj)) = C(mc(k,i),el(k,jj)) + CELEM(i,jj) ;
         end
         B(mc(k,i),6*(k-1)+[1, 2, 3, 4, 5, 6]) = BELEM(i,[1, 2, 3, 4, 5, 6]) ;
-        F(ngdls+6*(k-1)+[1, 2, 3, 4, 5, 6],1) = load([1, 2, 3, 4, 5, 6],1) ;
+        F(ngdls+6*(k-1)+[1, 2, 3, 4, 5, 6],1) = -load([1, 2, 3, 4, 5, 6],1) ;
     end
 end
 % GLOBAL SYSTEM

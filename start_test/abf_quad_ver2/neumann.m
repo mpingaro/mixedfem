@@ -22,9 +22,9 @@ rep1 = size(bc1,2)/2 ;
 rep2 = size(bc2,2)/2 ;
 rep3 = size(bc3,2)/2 ;
 rep4 = size(bc4,2)/2 ;
-bn1 = [bc1; repmat(g(1,:),1, rep1)] ;
-bn2 = [bc2; repmat(g(2,:),1, rep2)] ;
-bn3 = [bc3; repmat([g(3,2),g(3,1)],1, rep3)] ;
-bn4 = [bc4; repmat([g(4,2),g(4,1)],1, rep4)] ;
+bn1 = [bc1; repmat([g(1,2), g(1,1)],1, rep1)] ;
+bn2 = [bc2; repmat([g(2,2), g(2,1)],1, rep2)] ;
+bn3 = [bc3; repmat(g(3,:),1, rep3)] ;
+bn4 = [bc4; repmat(g(4,:),1, rep4)] ;
 
 return

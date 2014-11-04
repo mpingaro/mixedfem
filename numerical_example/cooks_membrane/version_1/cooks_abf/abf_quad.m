@@ -42,7 +42,7 @@ g(3,1) =   0.00 ;                  % traction load direction x edge 3
 g(3,2) =   0.00 ;                  % traction load direction y edge 3
 %
 g(4,1) =   0.00 ;                  % traction load direction x edge 4
-g(4,2) =-100.00 ;                  % traction load direction y edge 4
+g(4,2) = 100.00 ;                  % traction load direction y edge 4
 % Boundary conditions
 [bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
 bn = [bn1,bn2,bn4] ;

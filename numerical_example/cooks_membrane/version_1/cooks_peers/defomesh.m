@@ -2,9 +2,9 @@
 
 function def = defomesh(sp,elem,coord)
 
-def = zeros( size(coord) ) ;
 sp = reshape(sp,2,[])' ;
 
+def = zeros( size(coord) ) ;
 for i = 1:size(coord,1)
     
     ind = [];

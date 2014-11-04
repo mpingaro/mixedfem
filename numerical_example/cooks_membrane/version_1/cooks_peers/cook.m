@@ -23,7 +23,7 @@ end
 
 nelem = ndx*ndy;
 element = zeros(nelem,4);
-mc = zeros(nelem,13);
+mc = zeros(nelem,12);
 for i =1:ndy
     for j = 1:ndx
         %% Element
@@ -41,15 +41,14 @@ for i =1:ndy
         i5 = (4*ndx+2)*(i-1)+4*ndx+2*(j-1)+3;
         i6 = i5+1;
         i9 = (-1)^(i+j);
-        mc((i-1)*ndx+j,[1 2 3 4 5 6 7 8 13]) = [i1 i2 i3 i4 i5 i6 i7 i8 i9];
+        mc((i-1)*ndx+j,[1 2 3 4 5 6 7 8 12]) = [i1 i2 i3 i4 i5 i6 i7 i8 i9];
     end
 end
 nedge = ndx*(ndy+1)+ndy*(ndx+1);
 inz = 2*nedge;
-fin = inz+4*nelem;
-mc(:,9) = [inz+1:4:fin-3];
-mc(:,10) = [inz+2:4:fin-2];
-mc(:,11) = [inz+3:4:fin-1];
-mc(:,12) = [inz+4:4:fin];
+fin = inz+3*nelem;
+mc(:,9) = [inz+1:3:fin-2];
+mc(:,10) = [inz+2:3:fin-1];
+mc(:,11) = [inz+3:3:fin];
 
 return

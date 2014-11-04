@@ -25,8 +25,8 @@ length  = 4 ;                      % lunghezza trave
 heigth  = 1 ;                      % altezza trave
 young   = 5 ;                      % modulo di Young
 poisson = 0.0 ;                    % modulo di Poisson
-ndx     = 16 ;                     % numero suddivisioni in x
-ndy     =  4 ;                     % numero suddivisioni in y
+ndx     =  2 ;                     % numero suddivisioni in x
+ndy     =  1 ;                     % numero suddivisioni in y
 % Load
 f(1,1) =  0.00 ;                   % load distribiuted direction x
 f(2,1) = -0.01 ;                   % load distribiuted direction y

@@ -1,6 +1,6 @@
 
 %% --------------------------------------------------------------------- %%
-% --------------------- MIXED ELEMENT PEERS-ABF QUAD -------------------- %
+% ----------------------- MIXED ELEMENT PEERS QUAD ---------------------- %
 %                      FOR LINEAR ELASTICITY PROBLEM                      %
 % ---------------   ( by Marco Pingaro & Daniele Boffi )   -------------- %
 % Phd Student                                                             %
@@ -21,42 +21,44 @@
 %% INPUT DATI 
 clear all; close all; clc;
 % Geometry
-length  = 4 ;                      % lunghezza trave
-heigth  = 1 ;                      % altezza trave
-young   = 5 ;                      % modulo di Young
-poisson = 0.0 ;                    % modulo di Poisson
-ndx     =  2 ;                     % numero suddivisioni in x
-ndy     =  1 ;                     % numero suddivisioni in y
+young   = 250 ;                           % modulo di Young
+poisson = 1/3 ;                           % modulo di Poisson
+ndx     =   8 ;                           % numero suddivisioni in x
+ndy     =   4 ;                           % numero suddivisioni in y
+nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;
+dl1     = nodes(3,2)-nodes(2,2) ;
+dl2     = nodes(4,2) ;
 % Load
-f(1,1) =  0.00 ;                   % load distribiuted direction x
-f(2,1) = -0.01 ;                   % load distribiuted direction y
-% 
-g(1,1) =  0.00 ;                   % traction load direction x edge 1  
-g(1,2) =  0.00 ;                   % traction load direction y edge 1
+f(1,1)  =   0.00 ;                      % load distribiuted direction x
+f(2,1)  =   0.00 ;                      % load distribiuted direction y
 %
-g(2,1) =  0.00 ;                   % traction load direction x edge 2
-g(2,2) =  0.00 ;                   % traction load direction y edge 2
+g(1,1) =    0.00 ;                      % traction load direction x edge 1
+g(1,2) =    0.00 ;                      % traction load direction y edge 1
 %
-g(3,1) =  0.00 ;                   % traction load direction x edge 3
-g(3,2) =  0.00 ;                   % traction load direction y edge 3
+g(2,1) =    0.00 ;                      % traction load direction x edge 2
+g(2,2) =    0.00 ;                      % traction load direction y edge 2
 %
-g(4,1) =  0.00 ;                   % traction load direction x edge 4
-g(4,2) =  0.00 ;                   % traction load direction y edge 4
-% Boundary conditions
+g(3,1) =    0.00 ;                      % traction load direction x edge 3
+g(3,2) =    0.00 ;                      % traction load direction y edge 3
+%
+g(4,1) =    0.00 ;                      % traction load direction x edge 4
+g(4,2) = -100.00 ;                      % traction load direction y edge 4
+% Boundary conditions (Neumann)
 [bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
-bn = [bn1,bn2,bn3] ;
+bn = [bn1,bn2,bn4] ;
 % ----------------------------------------------------------------------- %
 lambda = young*poisson/((1+poisson)*(1-2*poisson)) ;
 mu = young/(2*(1+poisson)) ;
 cf(1,1) = 1/(2*mu) ;
 cf(1,2) = -lambda/(4*mu*(mu+lambda)) ;
+% ----------------------------------------------------------------------- %
 
 % Geometry
-[coordinates,element,mc] = beam(length,heigth,ndx,ndy) ;
+[coordinates,element,mc] = cook(nodes,ndx,ndy,dl1,dl2) ;
 nelem = size(element,1) ; 
 nnod  = size(coordinates,1) ;
 ngdls = max(max(mc)) ;
-ngdd = 6*nelem ;
+ngdd = 2*nelem ;
 ngdr = nnod ;
 ngdlt = ngdls + ngdd + ngdr ;
 
@@ -69,6 +71,6 @@ ngdlt = ngdls + ngdd + ngdr ;
 % Compute deformate
 def = defomesh(spost,element,coordinates) ;
 
-% Plot solution
+% Plot solution 
 plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
-% ------------------------------------------------------------------------ %
+% ----------------------------------------------------------------------- %

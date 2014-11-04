@@ -25,12 +25,12 @@ view(0,90)
 % Displacemnt X
 figure, surf(x,y,def_x)
 axis equal
-view(60,80)
+view(0,90)
 
 % Displacemnt Y
 figure, surf(x,y,def_y)
 axis equal
-view(60,80)
+view(0,90)
 
 % Displacement X
 figure

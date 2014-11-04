@@ -20,8 +20,8 @@ heigth  = 1;                     % altezza trave
 young   = 50;                    % modulo di Young
 ndx     = 20;                    % numero suddivisioni in x
 ndy     =  6;                    % numero suddivisioni in y
-f(1,1) = 0;                      % load distribiuted direction x
-f(2,1) = -0.04;                  % load distribiuted direction y
+f(1,1) =  0.00;                  % load distribiuted direction x
+f(2,1) = -0.10;                  % load distribiuted direction y
 % ----------------------------------------------------------------------- %
 
 % Geometry

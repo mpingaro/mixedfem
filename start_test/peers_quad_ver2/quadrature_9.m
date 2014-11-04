@@ -1,6 +1,6 @@
-% by Marco Pingaro
+% Created by Marco Pingaro
 
-function [gauss_p,gauss_w,npg] = gauss_quad()  
+function [gauss_p,gauss_w,npg] = quadrature_9()  
 
 %% Gauss Quadrature
 % - 9 Point Quadrature

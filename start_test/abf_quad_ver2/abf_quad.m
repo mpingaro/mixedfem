@@ -44,7 +44,7 @@ g(4,1) =  0.00 ;                   % traction load direction x edge 4
 g(4,2) =  0.00 ;                   % traction load direction y edge 4
 % Boundary conditions
 [bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
-bn = [bn1,bn2,bn3] ;
+bn = [bn1,bn2,bn4] ;
 % ----------------------------------------------------------------------- %
 lambda = young*poisson/((1+poisson)*(1-2*poisson)) ;
 mu = young/(2*(1+poisson)) ;

@@ -24,7 +24,7 @@ clear all; close all; clc;
 length  =  4 ;                      % lunghezza trave
 heigth  =  1 ;                      % altezza trave
 young   =  5 ;                      % modulo di Young
-poisson = 0.2 ;                     % modulo di Poisson
+poisson = 0.0 ;                     % modulo di Poisson
 ndx     =   2 ;                     % numero suddivisioni in x
 ndy     =   1 ;                     % numero suddivisioni in y
 % Load
@@ -44,7 +44,7 @@ g(4,1) =   0.0 ;                    % traction load direction x edge 4
 g(4,2) =   0.0 ;                    % traction load direction y edge 4
 % Boundary conditions (Neumann)
 [bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
-bn = [bn1,bn2,bn3] ;
+bn = [bn1,bn2,bn4] ;
 % ----------------------------------------------------------------------- %
 lambda = young*poisson/((1+poisson)*(1-2*poisson)) ;
 mu = young/(2*(1+poisson)) ;

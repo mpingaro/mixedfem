@@ -24,7 +24,7 @@ clear all; close all; clc;
 length  =  4 ;                      % lunghezza trave
 heigth  =  1 ;                      % altezza trave
 young   =  5 ;                      % modulo di Young
-poisson = 0.0 ;                     % modulo di Poisson
+poisson = 0.2 ;                     % modulo di Poisson
 ndx     =   2 ;                     % numero suddivisioni in x
 ndy     =   1 ;                     % numero suddivisioni in y
 % Load

@@ -2,7 +2,8 @@
 
 function [AELEM,BELEM,CELEM,b_load] = stiffness_abf(point,f,s,cf)  
 
-[gauss_p, gauss_w, npg] = gauss_quad() ;
+%[gauss_p, gauss_w, npg] = quadrature_9() ;
+[gauss_p, gauss_w, npg] = quadrature_16() ;
 
 %% ELEMENTARY MATRIX A & B
 AELEM = zeros(15,15) ; 

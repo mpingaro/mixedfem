@@ -17,6 +17,14 @@ end
 coordinates = zeros(npoint,1);
 coordinates(:,1) = reshape(x,npoint,1);
 coordinates(:,2) = reshape(y,npoint,1);
+% Insert distorsion
+dst = zeros(npoint,1);
+for j = 1:ndy/2
+    for i = 1:ndx+1
+        dst(ndx+1+2*(j-1)*(ndx+1)+i,1) = (-1)^(i)*(py/4);
+    end
+end
+coordinates(:,2) = coordinates(:,2)+dst;
 
 nelem = ndx*ndy;
 element = zeros(nelem,4);

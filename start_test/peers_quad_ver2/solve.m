@@ -12,6 +12,8 @@ end
 %% SOLUTION OF LINEAR SYSTEM
 soluz = K\F ;
 
+
+keyboard
 nt = ns+nd+nr ;
 
 stress= soluz(1:ns) ;

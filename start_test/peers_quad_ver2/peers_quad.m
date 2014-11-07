@@ -23,9 +23,9 @@ clear all; close all; clc;
 % Geometry
 length  =  5 ;                      % lunghezza trave
 heigth  =  1 ;                      % altezza trave
-young   =  50 ;                     % modulo di Young
-poisson = 0.0 ;                     % modulo di Poisson
-ndx     =   1 ;                     % numero suddivisioni in x
+young   = 250 ;                     % modulo di Young
+poisson = 0.4999 ;                  % modulo di Poisson
+ndx     =   5 ;                     % numero suddivisioni in x
 ndy     =   1 ;                     % numero suddivisioni in y
 % Load
 f(1,1)  =  0.00 ;                   % load distribiuted direction x

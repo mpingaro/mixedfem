@@ -8,10 +8,11 @@ for i = 1:size(bn,2)
     K(bn(1,i),bn(1,i)) = 1 ;
     F(bn(1,i),1) = bn(2,i) ;
 end
-nt = ns+nd+nr ;
 
 %% SOLUTION OF LINEAR SYSTEM
 soluz = K\F ;
+
+nt = ns+nd+nr ;
 
 stress= soluz(1:ns) ;
 spost = soluz(ns+1:ns+nd) ;

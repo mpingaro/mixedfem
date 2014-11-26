@@ -21,27 +21,27 @@
 %% INPUT DATI 
 clear all; close all; clc;
 % Geometry
-length  =  5 ;                      % lunghezza trave
-heigth  =  1 ;                      % altezza trave
-young   = 250 ;                     % modulo di Young
-poisson = 0.4999 ;                  % modulo di Poisson
-ndx     =   5 ;                     % numero suddivisioni in x
-ndy     =   1 ;                     % numero suddivisioni in y
+length  =  5 ;                   % lunghezza trave
+heigth  =  1 ;                   % altezza trave
+young   = 250 ;                  % modulo di Young
+poisson = 0.4999 ;               % modulo di Poisson
+ndx     =  5 ;                   % numero suddivisioni in x
+ndy     =  4 ;                   % numero suddivisioni in y
 % Load
-f(1,1)  =  0.00 ;                   % load distribiuted direction x
-f(2,1)  = -0.10 ;                   % load distribiuted direction y
+f(1,1)  =  0.00 ;                % load distribiuted direction x
+f(2,1)  =  0.00 ;                % load distribiuted direction y
 %
-g(1,1) =   0.0 ;                    % traction load direction x edge 1
-g(1,2) =   0.0 ;                    % traction load direction y edge 1
+g(1,1) =   0.00 ;                % traction load direction x edge 1
+g(1,2) =   0.00 ;                % traction load direction y edge 1
 %
-g(2,1) =   0.0 ;                    % traction load direction x edge 2
-g(2,2) =   0.0 ;                    % traction load direction y edge 2
+g(2,1) =   0.00 ;                % traction load direction x edge 2
+g(2,2) =   0.00 ;                % traction load direction y edge 2
 %
-g(3,1) =   0.0 ;                    % traction load direction x edge 3
-g(3,2) =   0.0 ;                    % traction load direction y edge 3
+g(3,1) =   0.00 ;                % traction load direction x edge 3
+g(3,2) =   0.00 ;                % traction load direction y edge 3
 %
-g(4,1) =   0.0 ;                    % traction load direction x edge 4
-g(4,2) =   0.0 ;                    % traction load direction y edge 4
+g(4,1) =   0.00 ;                % traction load direction x edge 4
+g(4,2) =-100.00 ;                % traction load direction y edge 4
 % Boundary conditions (Neumann)
 [bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
 bn = [bn1,bn2,bn4] ;

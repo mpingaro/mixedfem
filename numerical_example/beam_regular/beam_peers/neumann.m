@@ -22,9 +22,32 @@ rep1 = size(bc1,2)/2 ;
 rep2 = size(bc2,2)/2 ;
 rep3 = size(bc3,2)/2 ;
 rep4 = size(bc4,2)/2 ;
-bn1 = [bc1; repmat([g(1,2),g(1,1)],1, rep1)] ;
-bn2 = [bc2; repmat([g(2,2),g(2,1)],1, rep2)] ;
-bn3 = [bc3; repmat(g(3,:),1, rep3)] ;
-bn4 = [bc4; repmat(g(4,:),1, rep4)] ;
+
+for i = 1 : rep1
+    bn1(2,(i-1)*2+[1 2]) = (-1)^(i)*[g(1,2) g(1,1)];
+end
+
+for i = 1 : rep2
+    bn2(2,(i-1)*2+[1 2]) = (-1)^(i+ndy)*[g(2,2) g(2,1)];
+end
+
+for i = 1 : rep3
+    bn3(2,(i-1)*2+[1 2]) = (-1)^(i)*[g(3,1) g(3,1)];
+end
+
+for i = 1 : rep3
+    bn4(2,(i-1)*2+[1 2]) = (-1)^(i+ndx)*[g(4,1) g(4,1)];
+end
+
+bn1(1,:) = bc1;
+bn2(1,:) = bc2;
+bn3(1,:) = bc3;
+bn4(1,:) = bc4;
+
+
+%bn1 = [bc1; repmat([g(1,2),g(1,1)],1, rep1)] ;
+%bn2 = [bc2; repmat([g(2,2),g(2,1)],1, rep2)] ;
+%bn3 = [bc3; repmat(g(3,:),1, rep3)] ;
+%bn4 = [bc4; repmat(g(4,:),1, rep4)] ;
 
 return

@@ -23,12 +23,12 @@ clear all; close all; clc;
 % Geometry
 young   = 250 ;                    % modulo di Young
 poisson = 0.4999 ;                 % modulo di Poisson
-ndx     =  3 ;                     % numero suddivisioni in x
-ndy     =  2 ;                     % numero suddivisioni in y
+ndx     = 10 ;                     % numero suddivisioni in x
+ndy     =  4 ;                     % numero suddivisioni in y
 nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;
 dl1     = nodes(3,2)-nodes(2,2) ;
 dl2     = nodes(4,2) ;
-fload   = 100/16 ;
+fload   = 100/ndy ;
 % Load
 f(1,1) =   0.00 ;                  % load distribiuted direction x
 f(2,1) =   0.00 ;                  % load distribiuted direction y
@@ -42,8 +42,8 @@ g(2,2) =   0.00 ;                  % traction load direction y edge 2
 g(3,1) =   0.00 ;                  % traction load direction x edge 3
 g(3,2) =   0.00 ;                  % traction load direction y edge 3
 %
-g(4,1) =   0.00 ;                  % traction load direction x edge 4
-g(4,2) =  fload ;                  % traction load direction y edge 4
+g(4,1) =  fload ;                  % traction load direction x edge 4
+g(4,2) =   0.00 ;                  % traction load direction y edge 4
 % Boundary conditions
 [bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
 bn = [bn1,bn2,bn4] ;

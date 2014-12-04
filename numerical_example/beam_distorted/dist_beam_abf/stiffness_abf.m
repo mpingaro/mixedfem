@@ -29,10 +29,10 @@ for k = 1:npg
     % Determinant of Jacobian Matrix
     DJ = J(1,1)*J(2,2)-J(1,2)*J(2,1) ;
     % Inverse of Jacobian Matrix
-    %JJ(1,1) = J(2,2)/DJ ;  
-    %JJ(1,2) = -J(2,1)/DJ ;
-    %JJ(2,1) = -J(1,2)/DJ ; 
-    %JJ(2,2) = J(1,1)/DJ ;
+    JJ(1,1) = J(2,2)/DJ ;  
+    JJ(1,2) = -J(2,1)/DJ ;
+    JJ(2,1) = -J(1,2)/DJ ; 
+    JJ(2,2) = J(1,1)/DJ ;
       
     %% --- Stress
     sig(:,1) = J*[0; -0.5+0.5*y]/DJ ;                % Shape 1 RT0
@@ -41,13 +41,13 @@ for k = 1:npg
     sig(:,4) = J*[-0.5+0.5*x; 0]/DJ ;                % Shape 4 RT0
 
     % Bouble function 1
-    sig(:,5) = J*[2*x*(y^2-1); 2*y*(x^2-1)]/DJ ;
+    sig(:,5) = JJ*[2*x*(y^2-1); 2*y*(x^2-1)];
     % Bouble function 2 
-    sig(:,6) = J*[(1-3*x^2-2*x*y)*(1-y^2); (1-3*y^2-2*x*y)*(1-x^2)]/DJ ;
+    sig(:,6) = JJ*[(1-3*x^2-2*x*y)*(1-y^2); (1-3*y^2-2*x*y)*(1-x^2)];
 
     % Bolle aggiuntive ABF
-    sig(:,7) = J*[1-x^2; 0]/DJ ;
-    sig(:,8) = J*[0; 1-y^2]/DJ ;
+    sig(:,7) = JJ*[1-x^2; 0];
+    sig(:,8) = JJ*[0; 1-y^2];
 
     % Tensor functions 
     sigt = zeros(2,2,12) ;

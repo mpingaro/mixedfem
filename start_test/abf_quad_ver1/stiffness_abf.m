@@ -96,16 +96,16 @@ for k = 1:npg
     rot(1,2) = 0.25*(1+x)*(1-y) ;
     rot(1,3) = 0.25*(1+x)*(1+y) ;
     rot(1,4) = 0.25*(1-x)*(1+y) ;
-
+    
     %% AELEM 
     for i = 1:15
         for j = 1:15
             AELEM(i,j) = AELEM(i,j) + ...
-            ( cf(1,1)*trace( sigt(:,:,i)'*sigt(:,:,j) ) +...
-            cf(1,2)*trace(sigt(:,:,i))*trace(sigt(:,:,j)) )*w*DJ ; 
+            ( cf(1,1)*(sigt(1,1,i)*sigt(1,1,j)+sigt(1,2,i)*sigt(1,2,j)+sigt(2,1,i)*sigt(2,1,j)+sigt(2,2,i)*sigt(2,2,j)) +...
+            cf(1,2)*( sigt(1,1,i)+sigt(2,2,i) )*( sigt(1,1,j)+sigt(2,2,j) ) )*w*DJ ; 
         end
     end
-
+   
     %% BELEM
     for i=1:15
         for j=1:6

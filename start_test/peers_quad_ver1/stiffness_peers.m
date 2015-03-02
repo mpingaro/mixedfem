@@ -63,13 +63,13 @@ for k = 1:npg
     sigt(:,:,9)  = [ sig(2,5), -sig(1,5); 0, 0 ] ;
     sigt(:,:,10) = [ 0, 0; sig(2,5), -sig(1,5) ] ;
     sigt(:,:,11) = [ sig(2,6), -sig(1,6); sig(2,7), -sig(1,7) ] ;
-
-    % AELEM 
+    
+    %% AELEM 
     for i = 1:11
         for j = 1:11
             AELEM(i,j) = AELEM(i,j) + ...
-            ( cf(1,1)*trace( sigt(:,:,i)'*sigt(:,:,j) ) +...
-            cf(1,2)*trace(sigt(:,:,i))*trace(sigt(:,:,j)) )*w*DJ ; 
+            ( cf(1,1)*(sigt(1,1,i)*sigt(1,1,j)+sigt(1,2,i)*sigt(1,2,j)+sigt(2,1,i)*sigt(2,1,j)+sigt(2,2,i)*sigt(2,2,j)) +...
+            cf(1,2)*( sigt(1,1,i)+sigt(2,2,i) )*( sigt(1,1,j)+sigt(2,2,j) ) )*w*DJ ; 
         end
     end
 

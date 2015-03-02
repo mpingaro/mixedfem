@@ -73,10 +73,12 @@ for k = 1:npg
     for i = 1:12
         for j = 1:12
             AELEM(i,j) = AELEM(i,j) + ...
-            ( cf(1,1)*trace( sigt(:,:,i)'*sigt(:,:,j) ) +...
-            cf(1,2)*trace(sigt(:,:,i))*trace(sigt(:,:,j)) )*w*DJ ; 
+            ( cf(1,1)*(sigt(1,1,i)*sigt(1,1,j)+sigt(1,2,i)*sigt(1,2,j)+sigt(2,1,i)*sigt(2,1,j)+sigt(2,2,i)*sigt(2,2,j)) +...
+            cf(1,2)*( sigt(1,1,i)+sigt(2,2,i) )*( sigt(1,1,j)+sigt(2,2,j) ) )*w*DJ ; 
         end
     end
+    
+    
     %% CELEM
     for i = 1:12
         for j = 1:4

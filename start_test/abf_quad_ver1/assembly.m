@@ -1,6 +1,6 @@
 % by Marco Pingaro
 
-function [K,F] = assembly(coor,el,mc,cf,f)
+function [K,F] = assembly(coor,el,mc,lambda,G,f)
 
 nelem = size(el,1) ;
 nnod = size(coor,1) ;
@@ -21,7 +21,7 @@ for k = 1:nelem
     p(4,[1 2]) = coor( el(k,4),[1 2]) ;
     s = mc(k,16) ;
     % Compute the bilinear form a(sigma,tau), b(u, div(tau)) & the load (f,v) 
-    [AELEM,BELEM,CELEM,load] = stiffness_abf(p,f,s,cf) ;
+    [AELEM,BELEM,CELEM,load] = stiffness_abf(p,f,s,lambda,G) ;
     for i = 1:15
         for j = 1:15
             A(mc(k,i),mc(k,j)) = A(mc(k,i),mc(k,j)) + AELEM(i,j) ;

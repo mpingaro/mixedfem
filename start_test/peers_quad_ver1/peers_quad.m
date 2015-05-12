@@ -25,8 +25,8 @@ length  =  4 ;                      % lunghezza trave
 heigth  =  1 ;                      % altezza trave
 young   =  1e3 ;                    % modulo di Young
 poisson =  0.3 ;                    % modulo di Poisson
-ndx     =   40 ;                    % numero suddivisioni in x
-ndy     =   10 ;                    % numero suddivisioni in y
+ndx     =  64;                      % numero suddivisioni in x
+ndy     =  32;                      % numero suddivisioni in y
 % Load
 f(1,1)  =  0.00 ;                   % load distribiuted direction x
 f(2,1)  =  1.00 ;                   % load distribiuted direction y
@@ -67,5 +67,13 @@ ngdlt = ngdls + ngdd + ngdr ;
 def = defomesh(spost,element,coordinates) ;
 
 % Plot solution 
-plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
+%plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
 % ---------------------------------------------------------------------- %
+format long
+disp(spost(end));
+
+% 0.366508311132709
+% 0.355067134218928
+% 0.360486030392167
+% 0.364795212189251
+% 0.367374507061781

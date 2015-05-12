@@ -3,8 +3,8 @@
 function [AELEM,BELEM,CELEM,b_load] = stiffness_peers(point,f,s,lambda,G)  
 
 %[gauss_p, gauss_w, npg] = quadrature_9() ;
-[gauss_p, gauss_w, npg] = quadrature_16() ;
-%[gauss_p, gauss_w, npg] = quadrature_25() ;
+%[gauss_p, gauss_w, npg] = quadrature_16() ;
+[gauss_p, gauss_w, npg] = quadrature_25() ;
 
 %% - Legame
 C = [(2*G + lambda)/(4*G*(G + lambda)), 0, 0, -lambda/(4*G*(G + lambda));...

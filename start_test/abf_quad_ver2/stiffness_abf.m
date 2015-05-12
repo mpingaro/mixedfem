@@ -92,7 +92,7 @@ for k = 1:npg
     %% AELEM
     AELEM = AELEM + (C*sigma)'*sigma.*w.*DJ ;
     %% BELEM
-    BELEM = BELEM + div'*sp.*w.*DJ ;
+    BELEM = BELEM + div'*sp.*w ;
     %% CELEM
     CELEM = CELEM + sigma([3,2],:)'*asym .*w.*DJ ;
 

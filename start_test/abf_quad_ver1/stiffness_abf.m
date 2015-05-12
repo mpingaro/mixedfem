@@ -4,6 +4,7 @@ function [AELEM,BELEM,CELEM,b_load] = stiffness_abf(point,f,s,lambda,G)
 
 %[gauss_p, gauss_w, npg] = quadrature_9() ;
 [gauss_p, gauss_w, npg] = quadrature_16() ;
+%[gauss_p, gauss_w, npg] = quadrature_25() ;
 
 %% - Legame
 C = [(2*G + lambda)/(4*G*(G + lambda)), 0, 0, -lambda/(4*G*(G + lambda));...
@@ -89,7 +90,7 @@ for k = 1:npg
     %% AELEM
     AELEM = AELEM + (C*sigma)'*sigma.*w.*DJ ;
     %% BELEM
-    BELEM = BELEM + div'*sp.*w.*DJ ;
+    BELEM = BELEM + div'*sp.*w ;
     %% CELEM
     CELEM = CELEM + sigma([3,2],:)'*asym .*w.*DJ ;
     

@@ -26,7 +26,7 @@ for k = 1:npg
     %psi(1,7) = (1-x^2)*(y-y^3) ;
 
     psi(1,6) = (y-y^3-1+y^2)*(1-x^2)*0.25 ;
-    psi(1,7) = (x-x^3-1+x^2)*(1-y^3)*0.25 ;
+    psi(1,7) = (x-x^3-1+x^2)*(1-y^2)*0.25 ;
 
     % Gradient of shape functions 
     

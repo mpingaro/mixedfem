@@ -18,10 +18,10 @@ clear all; close all; clc;
 length  = 4;                     % lunghezza trave
 heigth  = 1;                     % altezza trave
 young   = 50;                    % modulo di Young
-ndx     =128;                    % numero suddivisioni in x
-ndy     = 32;                    % numero suddivisioni in y
+ndx     = 32;                    % numero suddivisioni in x
+ndy     = 16;                    % numero suddivisioni in y
 f(1,1) =  0.00;                  % load distribiuted direction x
-f(2,1) = -0.10;                  % load distribiuted direction y
+f(2,1) = -0.50;                  % load distribiuted direction y
 % ----------------------------------------------------------------------- %
 
 % Geometry

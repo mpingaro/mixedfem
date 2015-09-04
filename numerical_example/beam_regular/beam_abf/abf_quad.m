@@ -21,15 +21,15 @@
 %% INPUT DATI 
 clear all; close all; clc;
 % Geometry
-length  =  5 ;                     % lunghezza trave
+length  =  4 ;                     % lunghezza trave
 heigth  =  1 ;                     % altezza trave
-young   = 1000 ;                   % modulo di Young
-poisson = 0.4999 ;                 % modulo di Poisson
-ndx     = 10 ;                     % numero suddivisioni in x
-ndy     =  4 ;                     % numero suddivisioni in y
+young   = 50 ;                     % modulo di Young
+poisson = 0.3 ;                    % modulo di Poisson
+ndx     = 128 ;                    % numero suddivisioni in x
+ndy     =  64 ;                    % numero suddivisioni in y
 % Load
 f(1,1) = 0.00 ;                    % load distribiuted direction x
-f(2,1) = 0.00 ;                    % load distribiuted direction y
+f(2,1) =-0.10 ;                    % load distribiuted direction y
 % 
 g(1,1) = 0.0 ;                     % traction load direction x edge 1  
 g(1,2) = 0.0 ;                     % traction load direction y edge 1
@@ -40,7 +40,7 @@ g(2,2) = 0.0 ;                     % traction load direction y edge 2
 g(3,1) = 0.0 ;                     % traction load direction x edge 3
 g(3,2) = 0.0 ;                     % traction load direction y edge 3
 %
-g(4,1) = -0.1 ;                     % traction load direction x edge 4
+g(4,1) = 0.0 ;                     % traction load direction x edge 4
 g(4,2) = 0.0 ;                     % traction load direction y edge 4
 % Boundary conditions
 [bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
@@ -67,8 +67,8 @@ ngdlt = ngdls + ngdd + ngdr ;
 [stress,spost,rot] = solve(K,load,bn,ngdls,ngdd,ngdr) ;
 
 % Compute deformate
-def = defomesh(spost,element,coordinates) ;
+%def = defomesh(spost,element,coordinates) ;
 
 % Plot solution
-plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
+%plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
 % ------------------------------------------------------------------------ %

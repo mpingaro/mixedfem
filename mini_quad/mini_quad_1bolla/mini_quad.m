@@ -18,8 +18,8 @@ clear all; close all; clc;
 length  = 4;                     % lunghezza trave
 heigth  = 1;                     % altezza trave
 young   = 50;                    % modulo di Young
-ndx     = 32;                    % numero suddivisioni in x
-ndy     = 16;                    % numero suddivisioni in y
+ndx     =32;                     % numero suddivisioni in x
+ndy     =16;                     % numero suddivisioni in y
 f(1,1) =  0.00;                  % load distribiuted direction x
 f(2,1) = -0.50;                  % load distribiuted direction y
 % ----------------------------------------------------------------------- %
@@ -28,10 +28,11 @@ f(2,1) = -0.50;                  % load distribiuted direction y
 [coordinates,element,bc1,bc2,bc3,bc4] = beam(length,heigth,ndx,ndy) ;
 nelem = size(element,1) ; 
 nnod  = size(coordinates,1) ;
-ngdld = 2*nnod+4*nelem ;
+ngdld = 2*nnod+2*nelem ;
 ngdlp = nnod ;
 ngdlt = ngdld + ngdlp ;
 cf = young/1.5 ;
+
 % Assembly global system
 [K,load] = assembly(coordinates,element,cf,f) ; 
 

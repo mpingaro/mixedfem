@@ -23,7 +23,7 @@ clear all; close all; clc;
 % Geometry
 young   = 250 ;                    % modulo di Young
 poisson = 0.4999 ;                 % modulo di Poisson
-ndx     = 10 ;                     % numero suddivisioni in x
+ndx     =  4 ;                     % numero suddivisioni in x
 ndy     =  4 ;                     % numero suddivisioni in y
 nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;
 dl1     = nodes(3,2)-nodes(2,2) ;

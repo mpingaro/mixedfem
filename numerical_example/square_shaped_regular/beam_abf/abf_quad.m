@@ -21,15 +21,11 @@
 %% INPUT DATI 
 clear all; close all; clc;
 % Geometry
-length  =  4 ;                     % lunghezza trave
+length  =  1 ;                     % lunghezza trave
 heigth  =  1 ;                     % altezza trave
-young   = 50 ;                     % modulo di Young
-poisson = 0.3 ;                    % modulo di Poisson
-ndx     = 128 ;                    % numero suddivisioni in x
-ndy     =  64 ;                    % numero suddivisioni in y
-% Load
-f(1,1) = 0.00 ;                    % load distribiuted direction x
-f(2,1) =-0.10 ;                    % load distribiuted direction y
+nu = 0.4999;                       % Poisson
+mu = 1;                            % Lame constant
+lambda = 2*mu*nu/(1-2*nu);         %
 % 
 g(1,1) = 0.0 ;                     % traction load direction x edge 1  
 g(1,2) = 0.0 ;                     % traction load direction y edge 1
@@ -43,13 +39,22 @@ g(3,2) = 0.0 ;                     % traction load direction y edge 3
 g(4,1) = 0.0 ;                     % traction load direction x edge 4
 g(4,2) = 0.0 ;                     % traction load direction y edge 4
 % Boundary conditions
-[bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
-bn = [bn1,bn2,bn4] ;
+%[bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
+bn = [] ;
 % ----------------------------------------------------------------------- %
-lambda = young*poisson/((1+poisson)*(1-2*poisson)) ;
-mu = young/(2*(1+poisson)) ;
 cf(1,1) = 1/(2*mu) ;
 cf(1,2) = -lambda/(4*mu*(mu+lambda)) ;
+
+nl = [2, 4, 8, 16, 32, 64, 128];
+
+name = 'elastic_error_disp_u_abf.txt';
+f = fopen(name, 'w');
+fprintf(f,'elements v.s. error in L2 norm\n');
+
+for i=1:size(nl,2)
+
+ndx = nl(i);
+ndy = nl(i);
 
 % Geometry
 [coordinates,element,mc] = beam(length,heigth,ndx,ndy) ;
@@ -61,10 +66,20 @@ ngdr = nnod ;
 ngdlt = ngdls + ngdd + ngdr ;
 
 % Assembly global system
-[K,load] = assembly(coordinates,element,mc,cf,f) ; 
+[K,load] = assembly_error(coordinates,element,mc,cf,lambda,mu) ; 
 
 % Solve linear system
 [stress,spost,rot] = solve(K,load,bn,ngdls,ngdd,ngdr) ;
+
+% Compute error in norm L2
+er_u = error_l2_norm(spost, element, coordinates, lambda);    
+%
+% Print results
+fprintf(f, '%2.0f \t %6.5e \n', nelem, er_u);
+
+end
+fclose(f);
+
 
 % Compute deformate
 %def = defomesh(spost,element,coordinates) ;

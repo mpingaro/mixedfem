@@ -23,17 +23,10 @@ clear all; close all; clc;
 % Geometry
 length  =   1;                      % lunghezza trave
 heigth  =   1 ;                     % altezza trave
-
-young   = 1.0 ;                     % modulo di Young
-poisson = 0.0 ;                     % modulo di Poisson
-%lambda = 123.0;                     % Lame constant
-%mu = 79.3;                          % Lame constant
-
-ndx     =   1 ;                     % numero suddivisioni in x
-ndy     =   1 ;                     % numero suddivisioni in y
-% Load
-f(1,1)  =  1.0 ;                    % load distribiuted direction x
-f(2,1)  =  1.0 ;                    % load distribiuted direction y
+%
+nu = 0.4999;                        % Poisson
+mu = 1;                             % Lame constant
+lambda = 2*mu*nu/(1-2*nu);          %
 %
 g(1,1) =   0.0 ;                    % traction load direction x edge 1
 g(1,2) =   0.0 ;                    % traction load direction y edge 1
@@ -47,31 +40,24 @@ g(3,2) =   0.0 ;                    % traction load direction y edge 3
 g(4,1) =   0.0 ;                    % traction load direction x edge 4
 g(4,2) =   0.0 ;                    % traction load direction y edge 4
 % Boundary conditions (Neumann)
-[bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
+%[bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
 bn = [] ;
 % ----------------------------------------------------------------------- %
-
-
-lambda = young*poisson/((1+poisson)*(1-2*poisson)) ;
-mu = young/(2*(1+poisson)) ;
 cf(1,1) = 1/(2*mu) ;
 cf(1,2) = -lambda/(4*mu*(mu+lambda)) ;
 % ----------------------------------------------------------------------- %
 
-s = [2, 4, 8, 16, 32, 64, 128];
+nl = [2, 4, 8, 16, 32, 64, 128];
 
-name_1 = 'elastic_error_disp_ux.txt';
-name_2 = 'elastic_error_disp_uy.txt';
-f1 = fopen(name_1, 'w');
-f2 = fopen(name_2, 'w');
+name = 'elastic_error_disp_u_peers.txt';
+f = fopen(name, 'w');
 
-fprintf(f1,'elements v.s. error in L2 norm\n');
-fprintf(f2,'elements v.s. error in L2 norm\n');
+fprintf(f,'elements v.s. error in L2 norm\n');
 
-for i=1:3
+for i=1:size(nl,2)
 
-    ndx = s(i);
-    ndy = s(i);
+    ndx = nl(i);
+    ndy = nl(i);
     % Geometry
     [coordinates,element,mc] = beam(length,heigth,ndx,ndy) ;
     nelem = size(element,1) ; 
@@ -82,25 +68,24 @@ for i=1:3
     ngdlt = ngdls + ngdd + ngdr ;
 
     % Assembly global system
-    [K,load] = assembly(coordinates,element,mc,cf,f) ; 
+    [K,load] = assembly_error(coordinates,element,mc,cf,lambda,mu) ; 
 
     % Solve linear system
     [stress,spost,rot] = solve(K,load,bn,ngdls,ngdd,ngdr) ;
 
-    % Compute deformate
-    %def = defomesh(spost,element,coordinates) ;
-
-    % Plot solution 
-    %plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
-    
+   
     % Compute error in norm L2
-    [er_ux, er_uy] = error_l2_norm(spost, element, coordinates);    
+    er_u = error_l2_norm(spost, element, coordinates, lambda);    
 
     % Print results
-    fprintf(f1, '%6.4f \t %6.5e \n', ndx, er_ux);
-    fprintf(f2, '%6.4f \t %6.5e \n', ndx, er_uy);
+    fprintf(f, '%2.0f \t %6.5e \n', nelem, er_u);
 
 end
-fclose(f1);
-fclose(f2);
-% ----------------------------------------------------------------------- %
+fclose(f);
+% ---------------------------------------------------------------------- %
+%
+% Compute deformate
+%def = defomesh(spost,element,coordinates) ;
+% Plot solution 
+%plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
+ 

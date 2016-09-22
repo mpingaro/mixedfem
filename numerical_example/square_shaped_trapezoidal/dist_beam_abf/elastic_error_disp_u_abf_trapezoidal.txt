@@ -1,0 +1,2 @@
+elements v.s. error in L2 norm
+ 4 	 5.02072e-01 

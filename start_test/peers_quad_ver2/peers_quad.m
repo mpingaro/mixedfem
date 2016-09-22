@@ -23,10 +23,10 @@ clear all; close all; clc;
 % Geometry
 length  =  4 ;                   % lunghezza trave
 heigth  =  1 ;                   % altezza trave
-young   =  1e3 ;                 % modulo di Young
+young   =  1.0 ;                 % modulo di Young
 poisson =  0.3 ;                 % modulo di Poisson
-ndx     = 64 ;                   % numero suddivisioni in x
-ndy     = 32 ;                   % numero suddivisioni in y
+ndx     = 4 ;                    % numero suddivisioni in x
+ndy     = 1 ;                    % numero suddivisioni in y
 % Load
 f(1,1)  =  0.00 ;                % load distribiuted direction x
 f(2,1)  =  1.00 ;                % load distribiuted direction y
@@ -43,7 +43,7 @@ g(3,2) =   0.00 ;                % traction load direction y edge 3
 g(4,1) =   0.00 ;                % traction load direction x edge 4
 g(4,2) =   0.00 ;                % traction load direction y edge 4
 % Boundary conditions (Neumann)
-bn = [1,2,4] ;
+bn = 3 ;
 % ----------------------------------------------------------------------- %
 lambda = young*poisson/((1+poisson)*(1-2*poisson)) ;
 G = young/(2*(1+poisson)) ;
@@ -68,12 +68,5 @@ ngdlt = ngdls + ngdd + ngdr ;
 def = defomesh(spost,element,coordinates) ;
 
 % Plot solution 
-plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
+%plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
 % ----------------------------------------------------------------------- %
-
-% 0.366604004491943
-% 0.355126185449974
-% 0.360512079152836
-% 0.364804920710948
-% 0.367378002383919
-

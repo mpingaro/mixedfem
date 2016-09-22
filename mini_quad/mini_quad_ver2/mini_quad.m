@@ -16,10 +16,10 @@
 %% INPUT DATI 
 clear all; close all; clc;
 length  = 4;                     % lunghezza trave
-heigth  = 1;                     % altezza trave
+heigth  = 2;                     % altezza trave
 young   = 50;                    % modulo di Young
-ndx     = 32;                    % numero suddivisioni in x
-ndy     = 16;                    % numero suddivisioni in y
+ndx     = 2;                     % numero suddivisioni in x
+ndy     = 1;                     % numero suddivisioni in y
 f(1,1) =  0.00;                  % load distribiuted direction x
 f(2,1) = -0.50;                  % load distribiuted direction y
 % ----------------------------------------------------------------------- %
@@ -42,4 +42,4 @@ bc = [bc3] ;
 [spost,pres] = solve(K,load,bc,ngdld,ngdlp) ;
 
 % Plot
-plotsol(coordinates,spost,pres,ndx,ndy,nnod) ;
+%plotsol(coordinates,spost,pres,ndx,ndy,nnod) ;

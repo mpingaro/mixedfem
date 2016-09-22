@@ -3,7 +3,10 @@
 function [AELEM,BELEM,CELEM,b_load] = stiffness_peers(point,f,s,cf)  
 
 %[gauss_p, gauss_w, npg] = quadrature_9() ;
-[gauss_p, gauss_w, npg] = quadrature_16() ;
+%[gauss_p, gauss_w, npg] = quadrature_16() ;
+[gauss_w,gauss_p] = GaussQuad2D(9,9);
+npg = size(gauss_w,1);
+
 
 %% ELEMENTARY MATRIX A & B
 AELEM  = zeros(11,11); 
@@ -12,9 +15,7 @@ CELEM  = zeros(11,4) ;
 b_load = zeros(2,1)  ;
 
 for k = 1:npg
-    x = gauss_p(1,k) ; 
-    y = gauss_p(2,k) ;
-    w = gauss_w(1,k) ;
+    x = gauss_p(k,1) ; y = gauss_p(k,2) ; w = gauss_w(k,1) ;
     
     % Rotation
     rot(1,1) = 0.25*(1-x)*(1-y) ;

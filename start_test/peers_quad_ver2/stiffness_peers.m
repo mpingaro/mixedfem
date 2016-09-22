@@ -5,7 +5,10 @@ function [AELEM,BELEM,CELEM,b_load] = stiffness_peers(point,f,s,lambda,G)
 %% Different quadrature
 %[gauss_p, gauss_w, npg] = quadrature_9() ;
 %[gauss_p, gauss_w, npg] = quadrature_16() ;
-[gauss_p, gauss_w, npg] = quadrature_25() ;
+%[gauss_p, gauss_w, npg] = quadrature_25() ;
+
+[gauss_w, gauss_p] = GaussQuad2D(6,6);
+npg = size(gauss_w,1);
 
 %% - Legame
 C = [(2*G + lambda)/(4*G*(G + lambda)), 0, 0, -lambda/(4*G*(G + lambda));...
@@ -19,9 +22,9 @@ CELEM = zeros(12,4) ;
 b_load = zeros(2,1) ;
 
 for k = 1:npg
-    x = gauss_p(1,k) ; y = gauss_p(2,k) ; w = gauss_w(1,k) ;
-    
-    
+    %x = gauss_p(1,k) ; y = gauss_p(2,k) ; w = gauss_w(1,k) ;
+    x = gauss_p(k,1) ; y = gauss_p(k,2) ; w = gauss_w(k,1) ;
+
     [J,JJ,DJ] = jacobian_quad(point,x,y);
     
     %% --- Stress

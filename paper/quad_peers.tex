@@ -1,0 +1,47 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{amsmath}
+
+%  Sistemazione margini
+\addtolength{\hoffset}{-20pt}  % Riduco spazio bordo alto
+\oddsidemargin = 18pt          % Riduco spazio dordo lati
+\textwidth = 460pt             % Allargo parte scritta (righe) 
+\textheight = 700pt            % Allargo parte scritta (colonne)
+
+\title{\textbf{An extension of PEERS element for quadrilateral elasticity mixed formulation}}
+\date{\today}
+\author{Dr. Marco Pingaro and Prof. Boffi}
+
+\begin{document}
+\maketitle
+
+\section{Numerical example}
+
+
+\subsection{Square problem}
+First example is a unit square domain with homogeneous Dirichlet boundary conditions and we the exact solution is
+\begin{equation}\label{\eq:exact_solution}
+u_{1} = \cos (\pi x) \sin(2\pi y), \hspace{2pt) u_{2} = \sin(\pi x)\cos(\pi y).
+\end{equation} 
+The Lamé constant are fix to $\lambda = 123$ and $\mu=79.3$.
+By imposition of the previously exact solution one obtain for the body force $f$
+\begin{equation}
+\begin{split}
+&f_{1} = -\pi^{2} \cos(\pi x) \sin(\pi y) \left( \lambda + \mu + 2\lambda\cos(\pi y) + 
+12\mu\cos(\pi y)\right), \\
+&f_{2} = -\pi^{2}\sin(\pi x)\left( \lambda\cos(\pi y) + 3\mu\cos(\pi y) + 2\lambda\left(2\cos(\pi y)^{2} 
+- 1\right) + 2\mu\left(2\cos(\pi y)^{2} - 1\right) \right)
+\end{split}
+\end{equation}
+The problem is study using two type of mesh, first of all using a square mesh and before using a trapezoidal mesh.
+
+\subsection{Cantilever beam problem}
+
+
+\subsection{Cook's membrane}
+
+
+\end{document}

@@ -4,9 +4,10 @@ function [AELEM,BELEM,CELEM,b_load] = stiffness_peers(point,f,s,cf)
 
 % Different quadrature
 %[gauss_p, gauss_w, npg] = quadrature_9() ;
-[gauss_p, gauss_w, npg] = quadrature_16() ;
+%[gauss_p, gauss_w, npg] = quadrature_16() ;
 %[gauss_p, gauss_w, npg] = quadrature_25() ;
-
+[gauss_w, gauss_p] = GaussQuad2D(9,9);
+npg = size(gauss_w,1);
 
 %% ELEMENTARY MATRIX A & B
 AELEM = zeros(12,12) ; 
@@ -15,10 +16,9 @@ CELEM = zeros(12,4) ;
 b_load = zeros(2,1) ;
 
 for k = 1:npg
-    x = gauss_p(1,k) ; 
-    y = gauss_p(2,k) ;
-    w = gauss_w(1,k) ;
-    
+    %x = gauss_p(1,k) ; y = gauss_p(2,k) ; w = gauss_w(1,k) ;
+    x = gauss_p(k,1) ; y = gauss_p(k,2) ; w = gauss_w(k,1) ;
+   
     % Gradient of shape functions
     grad(1,1:4) = [-(1-y), 1-y, 1+y, -(1+y)].*0.25 ; % deriv along first direction
     grad(2,1:4) = [-(1-x), -(1+x), 1+x, 1-x].*0.25 ; % deriv along second direction

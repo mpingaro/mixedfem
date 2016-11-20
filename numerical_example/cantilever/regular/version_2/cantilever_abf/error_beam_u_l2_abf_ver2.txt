@@ -1,0 +1,4 @@
+element vs. error u in norm L2
+     8 	 2.34099e+00 
+    32 	 2.60119e+00 
+   128 	 2.64511e+00 

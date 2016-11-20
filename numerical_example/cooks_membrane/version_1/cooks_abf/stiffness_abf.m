@@ -50,7 +50,7 @@ for k = 1:npg
     sig(:,9) = JJ*[0; 1-y^2] ;
 
     % Tensor functions 
-    sigt = zeros(2,2,12) ;
+    sigt = zeros(2,2,15) ;
     sigt(:,:,1)  = [sig(1,1), sig(2,1); 0, 0].*s ;
     sigt(:,:,2)  = [0, 0; sig(1,1), sig(2,1)].*s ;
     sigt(:,:,3)  = [sig(1,2), sig(2,2); 0, 0].*s ;

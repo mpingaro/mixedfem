@@ -3,7 +3,10 @@
 function [AELEM,BELEM,CELEM,b_load] = stiffness_abf(point,f,s,cf)  
 
 %[gauss_p, gauss_w, npg] = quadrature_9() ;
-[gauss_p, gauss_w, npg] = quadrature_16() ;
+%[gauss_p, gauss_w, npg] = quadrature_16() ;
+[gauss_w, gauss_p] = GaussQuad2D(9,9);
+npg = size(gauss_w,1);
+
 
 %% ELEMENTARY MATRIX A & B
 AELEM = zeros(16,16) ; 
@@ -12,9 +15,7 @@ CELEM = zeros(16,4) ;
 b_load = zeros(6,1) ;
 
 for k = 1:npg
-    x = gauss_p(1,k) ; 
-    y = gauss_p(2,k) ;
-    w = gauss_w(1,k) ;
+    x = gauss_p(k,1) ; y = gauss_p(k,2) ; w = gauss_w(k,1) ;
     
     % Gradient of shape functions
     grad(1,1:4) = [-(1-y), 1-y, 1+y, -(1+y)].*0.25 ; % deriv along first direction
@@ -50,7 +51,7 @@ for k = 1:npg
     sig(:,8) = JJ*[0; 1-y^2] ;
 
     % Tensor functions 
-    sigt = zeros(2,2,12) ;
+    sigt = zeros(2,2,16) ;
     sigt(:,:,1)  = [sig(1,1), sig(2,1); 0, 0].*s ;
     sigt(:,:,2)  = [0, 0; sig(1,1), sig(2,1)].*s ;
     sigt(:,:,3)  = [sig(1,2), sig(2,2); 0, 0].*s ;

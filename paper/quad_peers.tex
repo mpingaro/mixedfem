@@ -2,13 +2,32 @@
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{graphicx}
-\usepackage{subfig}
+\usepackage{subfigure}
 \usepackage{amsmath}
+\usepackage{bm}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{fp}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+\usetikzlibrary{arrows}
+\tikzset{>=latex}
+
+% Color definition
+\definecolor{green2}{RGB}{154, 205, 50}
+\definecolor{green3}{RGB}{141, 182, 0}
+\definecolor{blue2}{RGB}{0, 102, 255}
+\definecolor{lightgreen}{RGB}{178,255,102}
+
 
 %  Sistemazione margini
 \addtolength{\hoffset}{-20pt}  % Riduco spazio bordo alto
-\oddsidemargin = 18pt          % Riduco spazio dordo lati
-\textwidth = 460pt             % Allargo parte scritta (righe) 
+\oddsidemargin = 10pt          % Riduco spazio dordo lati
+\textwidth = 500pt             % Allargo parte scritta (righe) 
 \textheight = 700pt            % Allargo parte scritta (colonne)
 
 \title{\textbf{An extension of PEERS element for quadrilateral elasticity mixed formulation}}
@@ -23,8 +42,8 @@
 
 \subsection{Square problem}
 First example is a unit square domain with homogeneous Dirichlet boundary conditions and we the exact solution is
-\begin{equation}\label{\eq:exact_solution}
-u_{1} = \cos (\pi x) \sin(2\pi y), \hspace{2pt) u_{2} = \sin(\pi x)\cos(\pi y).
+\begin{equation}\label{eq:exact_solution}
+u_{1} = \cos (\pi x) \sin(2\pi y), \hspace{10pt} u_{2} = \sin(\pi x)\cos(\pi y).
 \end{equation} 
 The Lamé constant are fix to $\lambda = 123$ and $\mu=79.3$.
 By imposition of the previously exact solution one obtain for the body force $f$
@@ -37,11 +56,54 @@ By imposition of the previously exact solution one obtain for the body force $f$
 \end{split}
 \end{equation}
 The problem is study using two type of mesh, first of all using a square mesh and before using a trapezoidal mesh.
+The two different types of meshes are shown in figures \ref{fig:square_regular} and \ref{fig:square_trapezoidal}.
+%
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Regular mesh \label{fig:square_regular}]
+{\input{figure/square_regular}}
+\hspace{5pt}
+\subfigure[Trapezoidal mesh \label{fig:square_trapezoidal}]{\input{figure/square_trapezoidal}}
+\caption{Square Problem}
+\end{center}
+\end{figure}
+%
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Regular mesh \label{fig:square_regular}]
+{\input{figure/square/elastic_error_l2_regular}}	
+\subfigure[Trapezoidal mesh \label{fig:square_trapezoidal}]{\input{figure/square/elastic_error_l2_trapezoidal}}
+\caption{Error in norm-$L^{2}$ of square problem}
+\end{center}
+\end{figure}
+
 
 \subsection{Cantilever beam problem}
 
+\begin{figure}[!h]
+\begin{center}
+\input{figure/beam}
+\caption{Cantilever Beam: Geometry problems \label{fig:beam}}
+\end{center}
+\end{figure}
+
 
 \subsection{Cook's membrane}
+
+\begin{figure}[!h]
+\begin{center}
+\input{figure/cook_membrane}
+\caption{Cook's Membrane Geometry \label{fig:cook_membrane}}
+\end{center}
+\end{figure}
+%
+\begin{figure}[!h]
+\begin{center}
+\subfigure[PEERS Element]{\input{figure/cook/cook_convergence_peers}}
+\subfigure[ABF Element]{\input{figure/cook/cook_convergence_abf}}
+\caption{Cook's Membrane: Vertical Displacement of Point A vs. Element per Side}
+\end{center}
+\end{figure}
 
 
 \end{document}

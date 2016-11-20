@@ -1,0 +1,100 @@
+%\documentclass{article}
+%
+%\usepackage{tikz}
+%\usepackage{tikz-3dplot}
+%\usetikzlibrary{calc}
+%\usetikzlibrary{patterns}
+%\usetikzlibrary{intersections}
+%\usetikzlibrary{arrows}
+%\tikzset{>=latex}
+%
+%\begin{document}
+%
+%\begin{figure}[!h]
+%\begin{center}
+\Large
+\begin{tikzpicture}[scale = 1]
+	
+	\pgfmathsetmacro{\L}{10}	
+ 	\pgfmathsetmacro{\l}{2}	
+	\pgfmathsetmacro{\dl}{2}
+	
+	
+	\coordinate[](a) at (0,0);
+	\coordinate[](b) at (\L,0);	
+	\coordinate[](c) at (\L,\l);
+	\coordinate[](d) at (0,\l);
+	
+	\coordinate[](m) at (0,\l/2);
+	\coordinate[](mm) at (\L,\l/2);
+	
+	\coordinate[](t) at (\L+\dl,\l);
+	\coordinate[](tt) at (\L+\dl-1,\l);
+	\coordinate[](u) at (\L+\dl,0);
+	\coordinate[](uu) at (\L+\dl+1,0);
+	
+	%% Quote
+	\coordinate[](ql) at (0, -\dl/2);
+	\coordinate[](qll) at (\L, -\dl/2);
+	\coordinate[](qh) at (-\dl, 0);
+	\coordinate[](qhh) at (-\dl, \l);
+		
+
+	% Trave
+	\filldraw[fill=gray!10!white, line width=2pt, draw=black] 
+	(a) -- (b) -- (c) -- (d) -- cycle;
+	
+	\begin{scope}[]
+	\foreach \x in {1,2,...,4}
+	{
+	\draw[line width=0.7pt, draw=black] (\x*\dl,  0) -- (\x*\dl,\l);
+	}
+	\end{scope}	
+	
+	% Vincoli
+	\begin{scope}[]
+	\foreach \x in {0,1,...,2}
+	{
+	\filldraw[fill=black, line width=0.7pt, draw=black] 
+	(-0.25,\l-\x*0.65) circle (0.25);
+	}
+	\end{scope}	
+	
+	\draw[line width=2pt, draw=black] 
+	(a) -- (-0.5,0.3) -- (-0.5,-0.3) -- cycle;
+	
+	 %% Load
+	\begin{scope}[->, ultra thick]
+	\draw[->,line width=2.0pt,red] (t) -- (tt) node[red,midway,above]
+	{$\textbf{-f}$};
+	\draw[->,line width=2.0pt,red] (u) -- (uu) node[red,midway,below]
+	{$\textbf{f}$};
+	\draw[->,line width=2.0pt,red] (\L+\dl,3*\dl/4) -- (\L+\dl-0.5,3*\dl/4);
+	\draw[->,line width=2.0pt,red] (\L+\dl,\dl/4) -- (\L+\dl+0.5,\dl/4);
+	\end{scope}	
+	\draw[line width=0.7pt, black, dashed] (t) -- (u) ;
+	\draw[line width=0.7pt, black, dashed] (tt) -- (uu) ;	
+	
+	\draw[line width=0.7pt, black, dashdotted] (-1,1) -- (13,1) ;
+	%% Quote
+	\draw [<->,color=black] (ql) -- (qll) node[black,midway,above] {$L$};
+	\draw [<->,color=black] (qh) -- (qhh) node[black,midway,left] {$l$};
+	
+	% Tratteggio
+	\fill[pattern=north west lines, pattern color=black] 
+	(-0.75,-0.4) rectangle (-0.5,\l+0.25);
+	
+	 %% Axis
+	\begin{scope}[->, thick]
+	\draw[->,line width=1.0pt,black] (0,\l+0.5) -- (0,\l+\dl);
+	\draw[->,line width=1.0pt,black] (0,\l+0.5) -- (\l-0.5,\l+0.5);
+	\end{scope}	
+	\node[black,left] at (0,\l+\dl) {$\textbf{y}$};
+	\node[black,above] at (\l-0.5,\l+0.5) {$\textbf{x}$};	
+		
+\end{tikzpicture}
+%\end{center}
+%\caption{Beam Cantilever}
+%\end{figure}
+%
+%\end{document}

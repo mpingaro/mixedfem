@@ -4,9 +4,10 @@ function [AELEM,BELEM,CELEM,b_load] = stiffness_peers(point,f,s,cf)
 
 % Different quadrature
 %[gauss_p, gauss_w, npg] = quadrature_9() ;
-[gauss_p, gauss_w, npg] = quadrature_16() ;
+%[gauss_p, gauss_w, npg] = quadrature_16() ;
 %[gauss_p, gauss_w, npg] = quadrature_25() ;
-
+[gauss_w, gauss_p] = GaussQuad2D(9,9);
+npg = size(gauss_w,1);
 
 %% ELEMENTARY MATRIX A & B
 AELEM = zeros(12,12) ; 

@@ -1,0 +1,64 @@
+%\documentclass{article}
+%
+%\usepackage{tikz}
+%\usepackage{tikz-3dplot}
+%\usetikzlibrary{calc}
+%\usetikzlibrary{patterns}
+%\usetikzlibrary{intersections}
+%\usetikzlibrary{arrows}
+%\tikzset{>=latex}
+%
+%\begin{document}
+%
+%\begin{figure}[!h]
+%\begin{center}
+\Large
+\begin{tikzpicture}[scale = 0.1]
+	\coordinate[](a) at (0,0);
+	\coordinate[](b) at (48,44);	
+	\coordinate[](c) at (48,60);
+	\coordinate[](d) at (0,44);
+	
+	\coordinate[](Mu) at (50,44);
+	\coordinate[](Muu) at (50,60);
+	\coordinate[](Ml) at (50,52);
+	
+	\coordinate[](aa) at (0, 22);	
+	\coordinate[](bb) at (48,52);
+	\coordinate[](cc) at (24,22);
+	\coordinate[](dd) at (24,52);
+	
+	\coordinate[](Ql) at (0,-5);	
+	\coordinate[](Qll) at (48,-5);
+	\coordinate[](Qh) at (-10,0);	
+	\coordinate[](Qhh) at (-10,44);
+	\coordinate[](Qhhh) at (-10,60);	
+	
+	% Trave
+	\filldraw[fill=gray!10!white, line width=2pt, draw=black] (a) -- (b) -- (c) -- (d) -- cycle;
+	\draw[line width=1pt, black] (aa) -- (bb);
+	\draw[line width=1pt, black] (cc) -- (dd);
+	
+	% Tratteggio
+	\fill[pattern=north west lines, pattern color=black] (d) rectangle (-3,0);
+	
+	 %% Load
+	\begin{scope}[->, ultra thick]
+	\draw[->,line width=2.0pt,red] (Mu) -- (Muu);
+	\end{scope}	
+	\node[red,right] at (Ml) {$\textbf{F}$};
+		
+	\fill[red] node at (c) {$\bullet$};	
+	\node[red,above] at (c) {$\textbf{A}$};
+	
+	%% Quote
+	\draw [<->,color=black] (Ql) -- (Qll) node[black,midway,above] {$48$};
+	\draw [<->,color=black] (Qh) -- (Qhh) node[black,midway,left] {$44$};
+	\draw [<->,color=black] (Qhh) -- (Qhhh) node[black,midway,left] {$16$};
+			
+\end{tikzpicture}
+%\end{center}
+%\caption{Cook's Membrane}
+%\end{figure}
+%
+%\end{document}

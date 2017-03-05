@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=latex 2016.8.18)  26 SEP 2016 17:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=latex 2016.11.21)  5 MAR 2017 18:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -779,7 +779,7 @@ topaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 ))) (/usr/share/texmf-dist/tex/latex/pgfplots/pgfplots.sty
 (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
-Package: pgfplots 2016/01/06 v1.13 Data Visualization (1.13)
+Package: pgfplots 2016/08/10 v1.14 Data Visualization (1.14)
 
 (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
 (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
@@ -919,20 +919,20 @@ LaTeX Warning: Label `sub@fig:square_trapezoidal' multiply defined.
 )
 \openout1 = `quad_peers.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Info: Redefining \it@ocap on input line 37.
-LaTeX Info: Redefining \it@ccap on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Info: Redefining \it@ocap on input line 76.
+LaTeX Info: Redefining \it@ccap on input line 76.
 
 
 File italian.ldf warning: 
@@ -940,14 +940,14 @@ italian.ldf    With OT1 encoding guillemets are poorly faked
 italian.ldf    Use T1 encoding
 italian.ldf    or specify a font with command \CaporaliFrom
 italian.ldf    See the documentation concerning the babel-italian typesetting 
-italian.ldf    on input line 37.
+italian.ldf    on input line 76.
 
 ABD: EveryShipout initializing macros
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
-ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
+ick labels; missing features). Consider writing \pgfplotsset{compat=1.14} into 
 your preamble.
- on input line 37.
+ on input line 76.
 
 (./figure/square_regular.tex) (./figure/square_trapezoidal.tex)
 (./figure/square/elastic_error_l2_regular.tex
@@ -959,19 +959,8 @@ PGFPlots: reading {figure/square/elastic_error_disp_u_peers_ver_2_trapezoidal.t
 xt}
 PGFPlots: reading {figure/square/elastic_error_disp_u_abf_ver_2_trapezoidal.txt
 }
-)
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-(./figure/beam.tex)
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-(./figure/cook_membrane.tex)
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-(./figure/cook/cook_convergence_peers.tex
+) (./figure/beam.tex)
+(./figure/cook_membrane.tex) (./figure/cook/cook_convergence_peers.tex
 PGFPlots: reading {figure/cook/cook_regular_peers_ver1.txt}
 PGFPlots: reading {figure/cook/cook_regular_peers_ver2.txt}
 PGFPlots: reading {figure/cook/cook_regular_peers_ver3_ver1.txt}
@@ -983,23 +972,32 @@ PGFPlots: reading {figure/cook/cook_regular_abf_ver2.txt}
 PGFPlots: reading {figure/cook/cook_regular_abf_ver3_ver1.txt}
 PGFPlots: reading {figure/cook/cook_regular_abf_ver3_ver2.txt}
 )
+(./figure/cook/cook_convergence_peers_random.tex
+PGFPlots: reading {figure/cook/cook_random_peers_ver1.txt}
+PGFPlots: reading {figure/cook/cook_random_peers_ver2.txt}
+PGFPlots: reading {figure/cook/cook_random_peers_ver3_ver1.txt}
+PGFPlots: reading {figure/cook/cook_random_peers_ver3_ver2.txt}
+)
+(./figure/cook/cook_convergence_abf_random.tex
+PGFPlots: reading {figure/cook/cook_random_abf_ver1.txt}
+PGFPlots: reading {figure/cook/cook_random_abf_ver2.txt}
+PGFPlots: reading {figure/cook/cook_random_abf_ver3_ver1.txt}
+PGFPlots: reading {figure/cook/cook_random_abf_ver3_ver2.txt}
+) [1
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[1
-
-] [2] [3] (./quad_peers.aux)
+] [2] [3] [4]
+(./quad_peers.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 24105 strings out of 493014
- 602704 string characters out of 6139343
- 860831 words of memory out of 5000000
- 27171 multiletter control sequences out of 15000+600000
+ 24487 strings out of 493014
+ 615569 string characters out of 6139342
+ 928480 words of memory out of 5000000
+ 27530 multiletter control sequences out of 15000+600000
  16910 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,19n,111p,796b,2311s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,19n,111p,796b,2322s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on quad_peers.dvi (3 pages, 104044 bytes).
+Output written on quad_peers.dvi (4 pages, 139800 bytes).

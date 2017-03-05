@@ -23,11 +23,21 @@ clear all; close all; clc;
 % Geometry
 young   = 250 ;                    % modulo di Young
 poisson = 0.4999 ;                 % modulo di Poisson
-ndx     = 10 ;                     % numero suddivisioni in x
-ndy     =  4 ;                     % numero suddivisioni in y
 nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;
 dl1     = nodes(3,2)-nodes(2,2) ;
 dl2     = nodes(4,2) ;
+
+nl = [2,4,8,16,32] ;
+
+name = 'cook_random_abf_ver2.txt';
+ff = fopen( name, 'w' );
+fprintf(ff, 'Element per Side vs. Vertical Displacement A\n');
+
+for i=1:size(nl,2)
+
+ndx = nl(i);
+ndy = nl(i);
+
 fload   = 100/ndy ;
 % Load
 f(1,1) =   0.00 ;                  % load distribiuted direction x
@@ -69,8 +79,15 @@ ngdlt = ngdls + ngdd + ngdr ;
 [stress,spost,rot] = solve(K,load,bn,ngdls,ngdd,ngdr) ;
 
 % Compute deformate
-def = defomesh(spost,element,coordinates) ;
+%def = defomesh(spost,element,coordinates) ;
 
 % Plot solution
-plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
+%plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
+
+% Save results
+pt = spost(end-2);
+fprintf(ff, '%6.0f \t %6.5e \n', ndx, full(pt));
+
+end
+fclose(ff);
 % ------------------------------------------------------------------------ %

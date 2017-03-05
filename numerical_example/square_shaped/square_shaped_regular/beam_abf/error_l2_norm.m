@@ -7,9 +7,14 @@ function er_u = error_l2_norm(sp, el, cr, l)
     sp = reshape(sp, 2, [])';
     sol_a = zeros(nel,2);
 
+    [bari, area] = barycentric_element(el, cr);
+
+
     for i=1:size(el,1)
-        pt(1) = ( cr(el(i,1),1) + cr(el(i,2),1) + cr(el(i,3),1) + cr(el(i,4),1) )/4;
-        pt(2) = ( cr(el(i,1),2) + cr(el(i,2),2) + cr(el(i,3),2) + cr(el(i,4),2) )/4;
+        %pt(1) = ( cr(el(i,1),1) + cr(el(i,2),1) + cr(el(i,3),1) + cr(el(i,4),1) )/4;
+        %pt(2) = ( cr(el(i,1),2) + cr(el(i,2),2) + cr(el(i,3),2) + cr(el(i,4),2) )/4;
+
+        pt = bari(i,:);
 
         A = 2/(1+l);
         B = 0.5*A*sin(pi*pt(1))*sin(pi*pt(2));

@@ -19,14 +19,14 @@
 % ----------------------------------------------------------------------- %
 
 %% INPUT DATI 
-clear all; close all; clc;
+clear; close all; clc;
 % Geometry
 length  =  4 ;                     % lunghezza trave
 heigth  =  1 ;                     % altezza trave
 young   = 50 ;                     % modulo di Young
 poisson = 0.3 ;                    % modulo di Poisson
-ndx     = 128 ;                    % numero suddivisioni in x
-ndy     =  64 ;                    % numero suddivisioni in y
+ndx     =  64 ;                    % numero suddivisioni in x
+ndy     =  32 ;                    % numero suddivisioni in y
 % Load
 f(1,1) = 0.00 ;                    % load distribiuted direction x
 f(2,1) =-0.10 ;                    % load distribiuted direction y
@@ -67,8 +67,8 @@ ngdlt = ngdls + ngdd + ngdr ;
 [stress,spost,rot] = solve(K,load,bn,ngdls,ngdd,ngdr) ;
 
 % Compute deformate
-%def = defomesh(spost,element,coordinates) ;
+def = defomesh(spost,element,coordinates) ;
 
 % Plot solution
-%plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
+plotsol(coordinates,element,stress,spost,rot,def,ndx,ndy) ;
 % ------------------------------------------------------------------------ %

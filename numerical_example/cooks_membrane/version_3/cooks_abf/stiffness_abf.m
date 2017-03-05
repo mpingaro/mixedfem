@@ -41,9 +41,9 @@ for k = 1:npg
     sig(:,3) = J*[ 0; 0.5+0.5*y]/DJ ;                % Shape 3 RT0
     sig(:,4) = J*[-0.5+0.5*x; 0]/DJ ;                % Shape 4 RT0
     % Bubble function 1 ver
-    sig(:,5) = JJ*[(-2*x-1+3*x^2)*(1-y-y^2+y^3); (-2*y-1+3*y^2)*(1-x-x^2+x^3)];
+    %sig(:,5) = JJ*[(-2*x-1+3*x^2)*(1-y-y^2+y^3); (-2*y-1+3*y^2)*(1-x-x^2+x^3)];
     % Bubble functions 2 ver
-    %sig(:,5) = JJ*[(1-2*x-2*x*y-3*x^2)*(1-y^2); (1-2*y-2*x*y-3*y^2)*(1-x^2)];
+    sig(:,5) = JJ*[(1-2*x-2*x*y-3*x^2)*(1-y^2); (1-2*y-2*x*y-3*y^2)*(1-x^2)];
 
     % New Bubble ABF
     sig(:,6) = JJ*[1-x^2; 0] ;

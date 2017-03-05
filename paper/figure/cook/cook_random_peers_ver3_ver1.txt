@@ -1,0 +1,6 @@
+Element per Side vs. Vertical Displacement A
+     2 	 5.68917e+00 
+     4 	 6.60224e+00 
+     8 	 7.49996e+00 
+    16 	 7.59276e+00 
+    32 	 7.46136e+00 

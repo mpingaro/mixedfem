@@ -23,6 +23,45 @@
 \definecolor{blue2}{RGB}{0, 102, 255}
 \definecolor{lightgreen}{RGB}{178,255,102}
 
+% New command
+
+\newcommand{\intd}{\int_{\Omega}}
+\newcommand{\intb}{\int_{\partial\Gamma}}
+\newcommand{\intbn}{\int_{\partial\Gamma_{N}}}
+\newcommand{\intbd}{\int_{\partial\Gamma_{D}}}
+\newcommand{\dd}{\: \text{d}\Omega}
+\newcommand{\db}{\: \text{d}\partial\Gamma}
+	
+\newcommand{\bu}{\bm{u}}
+\newcommand{\bv}{\bm{v}}
+\newcommand{\bsigma}{\bm{\sigma}}
+\newcommand{\strain}{\bm{\varepsilon}}
+\newcommand{\btau}{\bm{\tau}}
+\newcommand{\bgamma}{\bm{\gamma}}
+\newcommand{\bdelta}{\bm{\delta}}
+
+\newcommand{\trans}{^\text{T}}
+\newcommand{\symm}{^\text{s}}
+\newcommand{\skw}{^\text{e}}
+
+\newcommand{\grad}{\nabla}
+\newcommand{\grads}{\nabla\symm}
+\newcommand{\grade}{\nabla\skw}
+\newcommand{\gradu}{\grad\bu}
+\newcommand{\gradv}{\grad\bv}
+\newcommand{\divsig}{\mbox{div }\bsigma}
+	
+\newcommand{\E}{\bm{E}}
+\newcommand{\Ebar}{\bar{\bm{E}}}
+\newcommand{\F}{\bm{F}}
+\newcommand{\FT}{\bm{F}\trans}
+\newcommand{\PKS}{\bm{S}}
+\newcommand{\cauchy}{\bm{\sigma}}
+\newcommand{\Fbar}{\bar{\bm{F}}}
+
+\newcommand{\ctens}{\mathpzc{c}}
+\newcommand{\Ctens}{\bm{\mathbb{C}}}
+
 
 %  Sistemazione margini
 \addtolength{\hoffset}{-20pt}  % Riduco spazio bordo alto
@@ -30,15 +69,33 @@
 \textwidth = 500pt             % Allargo parte scritta (righe) 
 \textheight = 700pt            % Allargo parte scritta (colonne)
 
-\title{\textbf{An extension of PEERS element for quadrilateral elasticity mixed formulation}}
+\title{\textbf{On the extension of PEERS element for quadrilateral elasticity mixed formulation}}
 \date{\today}
-\author{Dr. Marco Pingaro and Prof. Boffi}
+\author{M. Pingaro, D. Boffi}
 
 \begin{document}
 \maketitle
 
-\section{Numerical example}
+\section{Introduction}
 
+\section{Reduced symmetry formulation}
+First of all, we recall the equations governing the linear elastic problems.
+Let $\Omega \in R^{2}$ 
+
+\begin{equation} \label{eq:equilibium_congruence}
+\begin{split}
+&\divsig = \bm{f} \hspace{10pt} \mbox{on } \Omega\:, \\
+&\strain = \grads\bu \hspace{17pt} \mbox{on } \Omega\:, \\
+&\bu = \bar{\bu} \hspace{28pt} \mbox{on } \Gamma_{D}\:, \\
+&\bsigma\cdot \bm{n} = \bm{t} \hspace{16pt} \mbox{on } \Gamma_{N}\:,
+\end{split}
+\end{equation}
+
+ 
+\section{PEERs element}
+
+\section{Numerical example}
+In this section we report some examples using the presented formulation to proven the good behaviour. All examples are studied in nearly incompressible limit. 
 
 \subsection{Square problem}
 First example is a unit square domain with homogeneous Dirichlet boundary conditions and we the exact solution is
@@ -56,9 +113,9 @@ By imposition of the previously exact solution one obtain for the body force $f$
 \end{split}
 \end{equation}
 The problem is study using two type of mesh, first of all using a square mesh and before using a trapezoidal mesh.
-The two different types of meshes are shown in figures \ref{fig:square_regular} and \ref{fig:square_trapezoidal}.
+The two different types of meshes are shown in Figures \ref{fig:square_regular} and \ref{fig:square_trapezoidal}.
 %
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \subfigure[Regular mesh \label{fig:square_regular}]
 {\input{figure/square_regular}}
@@ -68,40 +125,54 @@ The two different types of meshes are shown in figures \ref{fig:square_regular} 
 \end{center}
 \end{figure}
 %
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \subfigure[Regular mesh \label{fig:square_regular}]
 {\input{figure/square/elastic_error_l2_regular}}	
 \subfigure[Trapezoidal mesh \label{fig:square_trapezoidal}]{\input{figure/square/elastic_error_l2_trapezoidal}}
-\caption{Error in norm-$L^{2}$ of square problem}
+\caption{Error in $L^{2}$--norm of square problem}
 \end{center}
 \end{figure}
 
-
 \subsection{Cantilever beam problem}
-
-\begin{figure}[!h]
+Now we consider the beam with length $L=10$ and height $l=2$ as we shown in Figure \ref{fig:beam}. The Young modulus is set equal to $E=1500$ and the Poisson $\nu=0.4999$.
+The beam are fixed in the bottom left corner and subjected to a distributed load with $f=300$ on the right edge as shown in Figure \ref{fig:beam}.
+\begin{figure}[!ht]
 \begin{center}
 \input{figure/beam}
 \caption{Cantilever Beam: Geometry problems \label{fig:beam}}
 \end{center}
 \end{figure}
-
+We use to model the beam with two types of mesh: regular and trapezoidal as in the previous example (see Figures \ref{fig:square_regular} and \ref{fig:square_trapezoidal}).
 
 \subsection{Cook's membrane}
-
-\begin{figure}[!h]
+The final example is the Cook's membrane. That is a typical benchmark and consist of a beam with vertex: $(0,0)$, $(48,44)$, $(48,60)$ and $(0,44)$.
+The left vertical edge is clamped and the right vertical edge is subjected to the vertical distributed forces with resultant $F=100$ as shown in Figure \ref{fig:cook_membrane}.
+The material properties are taken to be $E = 250$ and $\nu = 0.4999$, so that a nearly incompressible response is obtained.
+We take into account the case of uniform meshes and the case of random distorted meshes (see Figure ).
+\begin{figure}[!ht]
 \begin{center}
 \input{figure/cook_membrane}
 \caption{Cook's Membrane Geometry \label{fig:cook_membrane}}
 \end{center}
 \end{figure}
+We report in Figures \ref{fig:cook_reg_peers} and \ref{fig:cook_reg_abf}, the vertical displacement of the point $A$ versus the number of element per side for different PEERS and ABF elements in the case of regular mesh.
+In the case of random distorted mesh the same results are shown in Figures  \ref{fig:cook_dist_peers} and \ref{fig:cook_dist_abf}.
+It can be observe that the standard solution obtained  
 %
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
-\subfigure[PEERS Element]{\input{figure/cook/cook_convergence_peers}}
-\subfigure[ABF Element]{\input{figure/cook/cook_convergence_abf}}
-\caption{Cook's Membrane: Vertical Displacement of Point A vs. Element per Side}
+\subfigure[PEERS Element \label{fig:cook_reg_peers}]{\input{figure/cook/cook_convergence_peers}}
+\subfigure[ABF Element \label{fig:cook_reg_abf}]{\input{figure/cook/cook_convergence_abf}}
+\caption{Cook's Membrane (regular mesh): Vertical Displacement of Point A vs. Element per Side}
+\end{center}
+\end{figure}
+%
+\begin{figure}[!ht]
+\begin{center}
+\subfigure[PEERS Element \label{fig:cook_dist_peers}]{\input{figure/cook/cook_convergence_peers_random}}
+\subfigure[ABF Element \label{fig:cook_dist_abf}]{\input{figure/cook/cook_convergence_abf_random}}
+\caption{Cook's Membrane (random distorted mesh): Vertical Displacement of Point A vs. Element per Side}
 \end{center}
 \end{figure}
 

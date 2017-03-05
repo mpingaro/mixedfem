@@ -1,0 +1,72 @@
+%\documentclass{article}
+
+%\usepackage{graphicx}
+%\usepackage{xcolor}
+%\usepackage{colortbl}
+%\usepackage{fp}
+%\usepackage{tikz, pgfplots}
+%\usetikzlibrary{calc}
+%\usetikzlibrary{patterns}
+%\usetikzlibrary{intersections}
+%\usetikzlibrary{arrows}
+%\tikzset{>=latex}
+%
+%% Color definition
+%\definecolor{green2}{RGB}{154, 205, 50}
+%\definecolor{green3}{RGB}{141, 182, 0}
+%\definecolor{blue2}{RGB}{0, 102, 255}
+%\definecolor{lightgreen}{RGB}{178,255,102}
+
+
+%\begin{document}
+
+%\begin{figure}[!h]
+%\begin{center}
+\begin{tikzpicture}
+ %transpose legend
+ \begin{axis}[width=0.45\textwidth, height=0.45\textwidth,
+  legend style={anchor=south, at={(0.5, 1.07)}, draw=none, font=\scriptsize},
+  legend columns=2,
+  xlabel={Number of Elements per Side},
+  ylabel={Vertical displacement of point A},
+  xmin=0, xmax=32,
+  ymin=5, ymax=9,
+  ytick={5, 6, 7, 8, 9},
+  yticklabels={$5$, $6$, $7$, $8$, $9$},
+  xtick={0, 2, 4, 8, 16, 32},
+  xticklabels={$0$, $2$, $4$, $8$, $16$, $32$},
+ ]
+ % Reference
+ %\addplot[black, ultra thick] coordinates{
+ %(50, 1.8248e-5)
+ %(15000, 1.8248e-5)
+ %}; 
+ %\addlegendentry{Reference} 
+ %
+ \addplot[red, mark=+, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/cook/cook_random_abf_ver1.txt};
+ \addlegendentry{ABF \textbf{2B} (mixed)}
+ %
+ \addplot[blue, mark=x, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/cook/cook_random_abf_ver2.txt};
+ \addlegendentry{ABF \textbf{2B}}
+ %
+ \addplot[green3, mark=o, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/cook/cook_random_abf_ver3_ver1.txt};
+ \addlegendentry{ABF \textbf{1B} (version 1)}
+ %
+ \addplot[green3, mark=o, thick, dashed, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/cook/cook_random_abf_ver3_ver2.txt};
+ \addlegendentry{ABF \textbf{1B} (version 2)}
+ % 
+ \end{axis}
+\end{tikzpicture}
+%\end{center}
+%\caption{Vertical Displacement of point A vs. the number of element per side}
+%\end{figure}
+
+%\end{document}

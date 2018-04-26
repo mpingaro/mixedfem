@@ -2,10 +2,8 @@
 
 function [AELEM,BELEM,CELEM,b_load] = stiffness_peers(point,f,s,cf)  
 
-%[gauss_p, gauss_w, npg] = quadrature_9() ;
-%[gauss_p, gauss_w, npg] = quadrature_16() ;
-[gauss_w, gauss_p] = GaussQuad2D(9,9);
-npg = size(gauss_w,1);
+[gauss_w, gauss_p] = GaussQuad2D(4,4) ;
+npg = size(gauss_w,1) ;
 
 %% ELEMENTARY MATRIX A & B
 AELEM = zeros(12,12) ; 
@@ -21,24 +19,24 @@ for k = 1:npg
     grad(2,1:4) = [-(1-x), -(1+x), 1+x, 1-x].*0.25 ; % deriv along second direction
     
     % Jacobian Matrix
-    J(1,1) = sum( grad(1,1:4)*point(1:4,1) ) ; % x_u
-    J(1,2) = sum( grad(2,1:4)*point(1:4,1) ) ; % x_v
-    J(2,1) = sum( grad(1,1:4)*point(1:4,2) ) ; % y_u
-    J(2,2) = sum( grad(2,1:4)*point(1:4,2) ) ; % y_v
+    J(1,1) = grad(1,1:4)*point(1:4,1) ; % x_u
+    J(1,2) = grad(2,1:4)*point(1:4,1) ; % x_v
+    J(2,1) = grad(1,1:4)*point(1:4,2) ; % y_u
+    J(2,2) = grad(2,1:4)*point(1:4,2) ; % y_v
        
     % Determinant of Jacobian Matrix
     DJ = J(1,1)*J(2,2)-J(1,2)*J(2,1) ;
-    % Inverse transpose of Jacobian Matrix
-    JJ(1,1) = J(2,2)/DJ ;  
+    % Inverse Jacobian Matrix
+    JJ(1,1) = J(2,2)/DJ ;
     JJ(1,2) = -J(2,1)/DJ ;
     JJ(2,1) = -J(1,2)/DJ ; 
     JJ(2,2) = J(1,1)/DJ ;
       
     %% --- Stress
-    sig(:,1) = J*[0; -0.5+0.5*y]/DJ ;                % Shape 1 RT0
-    sig(:,2) = J*[ 0.5+0.5*x; 0]/DJ ;                % Shape 2 RT0
-    sig(:,3) = J*[ 0; 0.5+0.5*y]/DJ ;                % Shape 3 RT0
-    sig(:,4) = J*[-0.5+0.5*x; 0]/DJ ;                % Shape 4 RT0
+    sig(:,1) = J*[0; -0.5+0.5*y]./DJ ;                % Shape 1 RT0
+    sig(:,2) = J*[0.5+0.5*x; 0]./DJ ;                 % Shape 2 RT0
+    sig(:,3) = J*[0; 0.5+0.5*y]./DJ ;                 % Shape 3 RT0
+    sig(:,4) = J*[-0.5+0.5*x; 0]./DJ ;                % Shape 4 RT0
 
     % Bouble function 1
     sig(:,5) = JJ*[2*x*(y^2-1); 2*y*(x^2-1)] ;
@@ -78,7 +76,7 @@ for k = 1:npg
     for i = 1:12
         for j = 1:4
             CELEM(i,j) = CELEM(i,j) +...
-            rot(1,j)*( sigt(1,2,i) - sigt(2,1,i) )*w*DJ ;
+            rot(1,j)*( sigt(2,1,i) - sigt(1,2,i) )*w*DJ ;
         end
     end
 

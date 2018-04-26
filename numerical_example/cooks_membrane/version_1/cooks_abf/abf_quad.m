@@ -19,7 +19,7 @@
 % ----------------------------------------------------------------------- %
 
 %% INPUT DATI 
-clear all; close all; clc;
+clear; close all; clc;
 % Geometry
 young   = 250 ;                    % modulo di Young
 poisson = 0.4999 ;                 % modulo di Poisson
@@ -27,7 +27,7 @@ nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;
 dl1     = nodes(3,2)-nodes(2,2) ;
 dl2     = nodes(4,2) ;
 
-nl = [2,4,8,16,32] ;
+nl = 32;%[2,4,8,16,32,64] ;
 
 name = 'cook_regular_abf_ver1.txt';
 ff = fopen( name, 'w' );
@@ -87,7 +87,7 @@ ngdlt = ngdls + ngdd + ngdr ;
 
 % Save results
 pt = spost(end-2);
-fprintf(ff, '%6.0f \t %6.5e \n', ndx, pt);
+fprintf(ff, '%6.0f \t %6.5e \n', ndx, full(pt));
 
 end
 fclose(ff);

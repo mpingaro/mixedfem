@@ -4,7 +4,7 @@ function [AELEM,BELEM,CELEM,b_load] = stiffness_abf(point,f,s,cf)
 
 %[gauss_p, gauss_w, npg] = quadrature_9() ;
 %[gauss_p, gauss_w, npg] = quadrature_16() ;
-[gauss_w, gauss_p] =GaussQuad2D(9,9);
+[gauss_w, gauss_p] =GaussQuad2D(4,4);
 npg  = size(gauss_w,1);
 
 %% ELEMENTARY MATRIX A & B
@@ -120,7 +120,7 @@ for k = 1:npg
     for i = 1:16
         for j = 1:4
             CELEM(i,j) = CELEM(i,j) +...
-            rot(1,j)*( sigt(1,2,i) - sigt(2,1,i) )*w*DJ ;
+            rot(1,j)*( sigt(2,1,i) - sigt(1,2,i) )*w*DJ ;
         end
     end
 

@@ -1,0 +1,81 @@
+%
+%% Color definition
+%\definecolor{green2}{RGB}{154, 205, 50}
+%\definecolor{green3}{RGB}{141, 182, 0}
+%\definecolor{blue2}{RGB}{0, 102, 255}
+%\definecolor{lightgreen}{RGB}{178,255,102}
+%
+%
+%\begin{document}
+%\scriptsize
+%\begin{figure}[!h]
+%\begin{center}
+\begin{tikzpicture}
+ %transpose legend
+ \begin{loglogaxis}[width=0.6\textwidth, height=0.6\textwidth,
+  legend style={anchor=south, at={(0.5, 1.07)}, draw=none, font=\scriptsize},
+  grid=major,
+  legend columns=2,
+  xlabel={\large Number of Elements},
+  ylabel={\large $\parallel \bm{u}_{h}-\bm{u} \parallel_{L^{2}} / \parallel \bm{u} \parallel_{L^{2}}$},
+  xmin=1, xmax=1e4,
+  ymin=1e-2, ymax=1e2,
+  ytick={1e-3, 1e-2, 1e-1, 1, 1e1},
+  yticklabels={$10^{-3}$, $10^{-2}$, $10^{-1}$, $10^{0}$, $10^{1}$},
+  xtick={1e0, 1e1, 1e2, 1e3, 1e4},
+  xticklabels={$10^{0}$, $10^{1}$, $10^{2}$, $10^{3}$, $10^{4}$},
+ ]
+ % Reference
+ %\addplot[black, ultra thick] coordinates{
+ %(50, 1.8248e-5)
+ %(15000, 1.8248e-5)
+ %}; 
+ %\addlegendentry{Reference} 
+ %
+ \addplot[red, mark=+, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/elastic_error_disp_u_peers_ver2.txt};
+ \addlegendentry{PEERS \textbf{2B}}
+ %
+ \addplot[blue, mark=x, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/elastic_error_disp_u_abf_ver2.txt};
+ \addlegendentry{ABF \textbf{2B}}
+ %
+ \addplot[red, mark=+, thick, dashed, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/elastic_error_disp_u_peers_trapezoidal_ver2.txt};
+ \addlegendentry{PEERS \textbf{2B}}
+ %
+ \addplot[blue, mark=x, thick, dashed, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/elastic_error_disp_u_abf_trapezoidal_ver2.txt};
+ \addlegendentry{ABF \textbf{2B}}
+% \addplot[green3, mark=o, thick, mark options={solid}]
+% table [x index={0}, y index={1}]
+% {square_example/bolla1_type1/elastic_error_disp_u_l2_lmu3.txt};
+% \addlegendentry{$\alpha / \mu=3$}
+ %
+ %\addplot[red, mark=+, dashed, very thick]
+ %table [x index={0}, y index={1}]
+ %{};
+ %\addlegendentry{}
+ %
+ %\addplot[blue, mark=x, very thick]
+ %table [x index={0}, y index={1}]
+ %{};
+ %\addlegendentry{}
+ %
+ %\addplot[green3, mark=x, very thick]
+ %table [x index={0}, y index={1}]
+ %{};
+ %\addlegendentry{}
+ % 
+ \end{loglogaxis}
+\end{tikzpicture}
+%\end{center}
+%\caption{The relative error versus the number of elements measured relative 
+%to the $L^{2}$}
+%\end{figure}
+%
+%\end{document}

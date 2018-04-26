@@ -1,0 +1,100 @@
+\section{Numerical example}
+In this section we report some examples using the presented formulation to proven the good behaviour. All examples are studied in nearly incompressible limit. 
+
+\subsection{Square problem}
+First example is a unit square domain with homogeneous Dirichlet boundary conditions and we the exact solution is
+\begin{equation}\label{eq:exact_solution}
+u_{1} = \cos (\pi x) \sin(2\pi y), \hspace{10pt} 
+u_{2} = \sin(\pi x)\cos(\pi y)\:.
+\end{equation} 
+%u_{1} = -2x^{2}y(1-x)^{2}(1-3y+2y^{2}), \hspace{10pt} 
+%u_{2} = 2xy^{2}(1-y)^{2}(1-3x+2x^{2})\:.
+The Lamé constant are fix to $\lambda = 123$ and $\mu=79.3$. %$\lambda = 123$ and $\mu=1.0$. 
+By imposition of the previously exact solution one obtain for the body force $f$
+\begin{equation}
+\begin{split}
+&f_{1} = -\pi^{2} \cos(\pi x) \sin(\pi y) \left( \lambda + \mu + 2\lambda\cos(\pi y) + 
+12\mu\cos(\pi y)\right), \\
+&f_{2} = -\pi^{2}\sin(\pi x)\left( \lambda\cos(\pi y) + 3\mu\cos(\pi y) + 2\lambda\left(2\cos(\pi y)^{2} 
+- 1\right) + 2\mu\left(2\cos(\pi y)^{2} - 1\right) \right)
+\end{split}
+\end{equation}
+%\begin{equation}
+%\begin{split}
+%&f_{1} = -4\mu(2y - 1)(3x^{4} - 6x^{3} + 6x^{2}y^{2} - 6x^{2}y + 3x^{2} - 6xy^{2} + 6xy + y^{2} - y)\:,\\
+%&f_{2} = 4\mu(2x - 1)(6x^{2}y^{2} - 6x^{2}y + x^{2} - 6xy^{2} + 6xy - x + 3y^{4} - 6y^{3} + 3y^{2})\:.
+%\end{split}
+%\end{equation}
+
+The problem is study using two type of mesh, first of all using a square mesh and before using a trapezoidal mesh.
+The two different types of meshes are shown in Figures \ref{fig:square_regular} and \ref{fig:square_trapezoidal}.
+%
+\begin{figure}[!ht]
+\begin{center}
+\subfigure[Regular mesh \label{fig:square_regular}]
+{\input{figure/square_regular}}
+\hspace{5pt}
+\subfigure[Trapezoidal mesh \label{fig:square_trapezoidal}]{\input{figure/square_trapezoidal}}
+\caption{Square Problem}
+\end{center}
+\end{figure}
+%
+\begin{figure}[!ht]
+\begin{center}
+\subfigure[Regular mesh \label{fig:square_regular}]
+{\input{figure/square/new_example/elastic_error_l2_regular}}	
+\subfigure[Trapezoidal mesh \label{fig:square_trapezoidal}]{\input{figure/square/new_example/elastic_error_l2_trapezoidal}}
+\caption{Error in $L^{2}$--norm of square problem}
+\end{center}
+\end{figure}
+
+%\begin{figure}[!ht]
+%\begin{center}
+%\input{figure/square/elastic_error_l2}
+%\caption{Error in $L^{2}$--norm of square problem}
+%\end{center}
+%\end{figure}
+
+
+
+\subsection{Cantilever beam problem}
+Now we consider the beam with length $L=10$ and height $l=2$ as we shown in Figure \ref{fig:beam}. The Young modulus is set equal to $E=1500$ and the Poisson $\nu=0.4999$.
+The beam are fixed in the bottom left corner and subjected to a distributed load with $f=300$ on the right edge as shown in Figure \ref{fig:beam}.
+\begin{figure}[!ht]
+\begin{center}
+\input{figure/beam}
+\caption{Cantilever Beam: Geometry problems \label{fig:beam}}
+\end{center}
+\end{figure}
+We use to model the beam with two types of mesh: regular and trapezoidal as in the previous example (see Figures \ref{fig:square_regular} and \ref{fig:square_trapezoidal}).
+
+\subsection{Cook's membrane}
+The final example is the Cook's membrane. That is a typical benchmark and consist of a beam with vertex: $(0,0)$, $(48,44)$, $(48,60)$ and $(0,44)$.
+The left vertical edge is clamped and the right vertical edge is subjected to the vertical distributed forces with resultant $F=100$ as shown in Figure \ref{fig:cook_membrane}.
+The material properties are taken to be $E = 250$ and $\nu = 0.4999$, so that a nearly incompressible response is obtained.
+We take into account the case of uniform meshes and the case of random distorted meshes (see Figure ).
+\begin{figure}[!ht]
+\begin{center}
+\input{figure/cook_membrane}
+\caption{Cook's Membrane Geometry \label{fig:cook_membrane}}
+\end{center}
+\end{figure}
+We report in Figures \ref{fig:cook_reg_peers} and \ref{fig:cook_reg_abf}, the vertical displacement of the point $A$ versus the number of element per side for different PEERS and ABF elements in the case of regular mesh.
+In the case of random distorted mesh the same results are shown in Figures  \ref{fig:cook_dist_peers} and \ref{fig:cook_dist_abf}.
+It can be observe that the standard solution obtained  
+%
+\begin{figure}[!ht]
+\begin{center}
+\subfigure[Regular mesh \label{fig:cook_reg_peers}]{\input{figure/cook/cook_convergence_peers}}
+%\subfigure[Random mesh \label{fig:cook_dist_peers}]{\input{figure/cook/cook_convergence_peers_random}}
+\caption{Cook's Membrane (PEERSQ): Vertical Displacement of Point A vs. Element per Side}
+\end{center}
+\end{figure}
+%
+\begin{figure}[!ht]
+\begin{center}
+\subfigure[Regular mesh \label{fig:cook_reg_abf}]{\input{figure/cook/cook_convergence_abf}}
+%\subfigure[Random mesh \label{fig:cook_dist_abf}]{\input{figure/cook/cook_convergence_abf_random}}
+\caption{Cook's Membrane (ABF): Vertical Displacement of Point A vs. Element per Side}
+\end{center}
+\end{figure}

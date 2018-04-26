@@ -19,7 +19,7 @@
 % ----------------------------------------------------------------------- %
 
 %% INPUT DATI 
-clear all; close all; clc;
+clear; close all; clc;
 % Geometry
 young   = 250 ;                           % modulo di Young
 poisson = 0.4999 ;                        % modulo di Poisson
@@ -27,7 +27,7 @@ nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;
 dl1     = nodes(3,2)-nodes(2,2) ;
 dl2     = nodes(4,2) ;
 
-nl = [2,4,8,16,32] ;
+nl = [2,4,8,16,32,64] ;
 
 name = 'cook_regular_peers_ver3_ver2.txt';
 ff = fopen( name, 'w' );
@@ -52,8 +52,8 @@ g(2,2) =    0.00 ;                      % traction load direction y edge 2
 g(3,1) =    0.00 ;                      % traction load direction x edge 3
 g(3,2) =    0.00 ;                      % traction load direction y edge 3
 %
-g(4,1) =   fload ;                      % traction load direction x edge 4
-g(4,2) =    0.00 ;                      % traction load direction y edge 4
+g(4,1) =    0.00 ;                      % traction load direction x edge 4
+g(4,2) =   fload ;                      % traction load direction y edge 4
 % Boundary conditions (Neumann)
 [bn1,bn2,bn3,bn4] = neumann(ndx,ndy,g) ;
 bn = [bn1,bn2,bn4] ;

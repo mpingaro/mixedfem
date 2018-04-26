@@ -80,7 +80,7 @@
 
 \section{Reduced symmetry formulation}
 First of all, we recall the equations governing the linear elastic problems.
-Let $\Omega \in R^{2}$ 
+Let $\Omega \in R^{2}$ and $\bm{f}\in L^{2}(\Omega)$ 
 
 \begin{equation} \label{eq:equilibium_congruence}
 \begin{split}
@@ -90,9 +90,19 @@ Let $\Omega \in R^{2}$
 &\bsigma\cdot \bm{n} = \bm{t} \hspace{16pt} \mbox{on } \Gamma_{N}\:,
 \end{split}
 \end{equation}
+where $\bsigma$ is the Cauchy stress tensor, $\strain$ is the strain tensor.
 
- 
-\section{PEERs element}
+\begin{equation}
+\left\lbrace
+\begin{split}
+&\intd \divsig \cdot \bv \dd = \intd \bm{f}\cdot\bv\dd\:,\\
+&\intd \strain : \btau \dd - \intd \grads\bu : \btau \dd = 0\:,
+\end{split}
+\right.
+\end{equation}
+
+
+\section{PEERS element}
 
 \section{Numerical example}
 In this section we report some examples using the presented formulation to proven the good behaviour. All examples are studied in nearly incompressible limit. 

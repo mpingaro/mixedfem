@@ -1,0 +1,85 @@
+%\documentclass{article}
+%
+%\usepackage{graphicx}
+%\usepackage{xcolor}
+%\usepackage{colortbl}
+%\usepackage{fp}
+%\usepackage{tikz, pgfplots}
+%\usetikzlibrary{calc}
+%\usetikzlibrary{patterns}
+%\usetikzlibrary{intersections}
+%\usetikzlibrary{arrows}
+%\tikzset{>=latex}
+%
+%% Color definition
+%\definecolor{green2}{RGB}{154, 205, 50}
+%\definecolor{green3}{RGB}{141, 182, 0}
+%\definecolor{blue2}{RGB}{0, 102, 255}
+%\definecolor{lightgreen}{RGB}{178,255,102}
+%
+%
+%\begin{document}
+%\scriptsize
+%\begin{figure}[!h]
+%\begin{center}
+\begin{tikzpicture}
+ %transpose legend
+ \begin{loglogaxis}[width=0.45\textwidth, height=0.45\textwidth,
+  legend style={anchor=south, at={(0.5, 1.07)}, draw=none, font=\scriptsize},
+  grid=major,
+  legend columns=2,
+  xlabel={\small Number of Elements},
+  ylabel={\small $\parallel u_{h}-u \parallel_{L^{2}}/ \parallel u \parallel_{L^{2}}$},
+  xmin=1e0, xmax=1e5,
+  ymin=1e-3, ymax=1e2,
+  ytick={1e-3, 1e-2, 1e-1, 1, 1e1, 1e2},
+  yticklabels={$10^{-3}$, $10^{-2}$, $10^{-1}$, $10^{0}$, 
+  $10^{1}$, $10^{2}$},
+  xtick={1e0, 1e1, 1e2, 1e3, 1e4, 1e5},
+  xticklabels={$10^{0}$, $10^{1}$, $10^{2}$, $10^{3}$, $10^{4}$, $10^{5}$},
+ ]
+ % Reference
+ %\addplot[black, ultra thick] coordinates{
+ %(50, 1.8248e-5)
+ %(15000, 1.8248e-5)
+ %}; 
+ %\addlegendentry{Reference} 
+ %
+ \addplot[green, mark=square, very thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/new_example/results/elastic_error_disp_u_peers_trapezoidal_1b.txt};
+ \addlegendentry{PEERSQ1B}
+ %
+ \addplot[red, mark=x, very thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/new_example/results/elastic_error_disp_u_peers_trapezoidal_2b.txt};
+ \addlegendentry{PEERSQ2B}
+ %
+ \addplot[blue, mark=o, very thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/new_example/results/elastic_error_disp_u_peers_trapezoidal_2bm.txt};
+ \addlegendentry{PEERSQ2BM}
+ %
+ \addplot[black, mark=square, very thick]
+ table [x index={0}, y index={1}]
+ {figure/square/new_example/results/elastic_error_disp_u_peersq_trapezoidal.txt};
+ \addlegendentry{PEERSQ}
+ %
+ %\addplot[blue, mark=x, very thick]
+ %table [x index={0}, y index={1}]
+ %{};
+ %\addlegendentry{}
+ %
+ %\addplot[green3, mark=x, very thick]
+ %table [x index={0}, y index={1}]
+ %{};
+ %\addlegendentry{}
+ % 
+ \end{loglogaxis}
+\end{tikzpicture}
+%\end{center}
+%\caption{Trapezoidal mesh: relative error versus the number of elements measured relative 
+%to the $L^{2}$}
+%\end{figure}
+%
+%\end{document}

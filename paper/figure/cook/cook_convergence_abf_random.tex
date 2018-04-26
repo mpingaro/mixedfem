@@ -27,8 +27,8 @@
  \begin{axis}[width=0.45\textwidth, height=0.45\textwidth,
   legend style={anchor=south, at={(0.5, 1.07)}, draw=none, font=\scriptsize},
   legend columns=2,
-  xlabel={Number of Elements per Side},
-  ylabel={Vertical displacement of point A},
+  xlabel={\small Number of Elements per Side},
+  ylabel={\small Vertical displacement of point A},
   xmin=0, xmax=32,
   ymin=5, ymax=9,
   ytick={5, 6, 7, 8, 9},
@@ -46,22 +46,22 @@
  \addplot[red, mark=+, thick, mark options={solid}]
  table [x index={0}, y index={1}]
  {figure/cook/cook_random_abf_ver1.txt};
- \addlegendentry{ABF \textbf{2B} (mixed)}
+ \addlegendentry{ABFQ2BM}
  %
  \addplot[blue, mark=x, thick, mark options={solid}]
  table [x index={0}, y index={1}]
  {figure/cook/cook_random_abf_ver2.txt};
- \addlegendentry{ABF \textbf{2B}}
+ \addlegendentry{ABFQ2B}
  %
  \addplot[green3, mark=o, thick, mark options={solid}]
  table [x index={0}, y index={1}]
  {figure/cook/cook_random_abf_ver3_ver1.txt};
- \addlegendentry{ABF \textbf{1B} (version 1)}
+ \addlegendentry{ABFQ1B (v.1)}
  %
  \addplot[green3, mark=o, thick, dashed, mark options={solid}]
  table [x index={0}, y index={1}]
  {figure/cook/cook_random_abf_ver3_ver2.txt};
- \addlegendentry{ABF \textbf{1B} (version 2)}
+ \addlegendentry{ABFQ1B (v.2)}
  % 
  \end{axis}
 \end{tikzpicture}

@@ -31,7 +31,7 @@ for k = 1:nelem
         end
         B(mc(k,i),2*(k-1)+[1, 2]) = BELEM(i,[1, 2]) ;
     end
-    F(ngdls+2*(k-1)+[1, 2],1) = -load([1, 2],1) ;
+    F(ngdls+2*(k-1)+[1, 2],1) = load([1, 2],1) ;
 end
 % GLOBAL SYSTEM
 K = [A, B, C; B',sparse(2*nelem,2*nelem+nnod); C', sparse(nnod,2*nelem+nnod)] ;

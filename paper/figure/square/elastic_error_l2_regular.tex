@@ -27,15 +27,15 @@
  \begin{loglogaxis}[width=0.45\textwidth, height=0.45\textwidth,
   legend style={anchor=south, at={(0.5, 1.07)}, draw=none, font=\scriptsize},
   grid=major,
-  legend columns=3,
-  xlabel={\large Number of Elements},
-  ylabel={\Large $\frac{\parallel u_{h}-u \parallel_{L^{2}}}{\parallel u \parallel_{L^{2}}}$},
-  xmin=1, xmax=1e5,
-  ymin=1e-3, ymax=1e0,
-  ytick={1e-3, 1e-2, 1e-1, 1},
-  yticklabels={$10^{-3}$, $10^{-2}$, $10^{-1}$, $10^{0}$},
-  xtick={1e0, 1e1, 1e2, 1e3, 1e4, 1e5},
-  xticklabels={$10^{0}$, $10^{1}$, $10^{2}$, $10^{3}$, $10^{4}$, $10^{5}$},
+  legend columns=2,
+  xlabel={\small Number of Elements},
+  ylabel={\small $\parallel \bm{u}_{h}-\bm{u} \parallel_{L^{2}} / \parallel \bm{u} \parallel_{L^{2}}$},
+  xmin=1, xmax=1e4,
+  ymin=1e-4, ymax=1e0,
+  ytick={1e-4, 1e-3, 1e-2, 1e-1, 1},
+  yticklabels={$10^{-4}$, $10^{-3}$, $10^{-2}$, $10^{-1}$, $10^{0}$},
+  xtick={1e0, 1e1, 1e2, 1e3, 1e4},
+  xticklabels={$10^{0}$, $10^{1}$, $10^{2}$, $10^{3}$, $10^{4}$},
  ]
  % Reference
  %\addplot[black, ultra thick] coordinates{
@@ -44,20 +44,35 @@
  %}; 
  %\addlegendentry{Reference} 
  %
- \addplot[red, mark=+, thick, mark options={solid}]
+ \addplot[black, mark=square, thick, mark options={solid}]
  table [x index={0}, y index={1}]
- {figure/square/elastic_error_disp_u_peers_ver2.txt};
- \addlegendentry{PEERS \textbf{2B}}
+ {figure/square/elastic_error_disp_u_peersq.txt};
+ \addlegendentry{PEERSQ}
+ % 
+ \addplot[green, mark=triangle, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/elastic_error_disp_u_peers_1b.txt};
+ \addlegendentry{PEERSQ1B} 
+ % 
+ \addplot[red, mark=x, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/elastic_error_disp_u_peers_2b.txt};
+ \addlegendentry{PEERSQ2B}
+ %
+ \addplot[red, mark=o, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/elastic_error_disp_u_abf_2b.txt};
+ \addlegendentry{ABFQ2B}
  %
  \addplot[blue, mark=x, thick, mark options={solid}]
  table [x index={0}, y index={1}]
- {figure/square/elastic_error_disp_u_abf_ver2.txt};
- \addlegendentry{ABF \textbf{2B}}
- %
-% \addplot[green3, mark=o, thick, mark options={solid}]
-% table [x index={0}, y index={1}]
-% {square_example/bolla1_type1/elastic_error_disp_u_l2_lmu3.txt};
-% \addlegendentry{$\alpha / \mu=3$}
+ {figure/square/elastic_error_disp_u_peers_2bmixed.txt};
+ \addlegendentry{PEERSQ2BM }
+ % 
+ \addplot[blue, mark=o, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {figure/square/elastic_error_disp_u_abf_2bmixed.txt};
+ \addlegendentry{ABFQ2BM }
  %
  %\addplot[red, mark=+, dashed, very thick]
  %table [x index={0}, y index={1}]

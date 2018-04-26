@@ -1,0 +1,45 @@
+\section{Conclusions}
+
+\begin{equation}\label{eq:error_divergence}
+\parallel \mbox{div}(\sigma_{h}-\sigma)\parallel_{L^{2}} =
+\left( \int_{\Omega} (\mbox{div}(\sigma_{h}) - \mbox{div}(\sigma))^{2} \: d\Omega \right)^{1/2} 
+\end{equation}
+Ricordando che la divergenza:
+\begin{equation}\label{eq:divergence_reference}
+\mbox{div}(\sigma_{h}) = \frac{1}{det(J)}\mbox{div}(\hat{\sigma}_{h}) 
+\end{equation}
+
+\begin{equation}
+\parallel \mbox{div}(\sigma_{h}-\sigma)\parallel_{L^{2}} =
+\left( \int_{\hat{\Omega}} \left(\frac{1}{det(J)}\mbox{div}(\hat{\sigma}_{h}) - \mbox{div}(\sigma)\right)^{2} \: det(J) \: d\hat{\Omega} \right)^{1/2}
+\end{equation}
+
+\begin{equation}
+\parallel \mbox{div}(\sigma_{h}-\sigma)\parallel_{L^{2}} =
+\left( \sum_{i=1}^{\#el} \sum_{j=1}^{nqp} \left(\frac{1}{det(J(\xi_{j},\eta_{j}))}\mbox{div}(\hat{\sigma}_{h}(\xi_{j},\eta_{j})) - \mbox{div}(\sigma(x_{j},y_{j}))\right)^{2} \: det(J(\xi_{j},\eta_{j})) \: w_{j}  \right)^{1/2}
+\end{equation}
+dove $\xi_{j},\eta_{j}$ sono i gauss points nell'elemento di referenza $[-1,1]\times [-1, 1]$ e $x_{j},y_{j}$ sono i gauss points mappati nell'elemento fisico.
+
+In modo analogo per gli spostamenti e per le pressioni:
+\begin{equation}
+\parallel u_{h}-u\parallel_{L^{2}} =
+\left( \sum_{i=1}^{\#el} \sum_{j=1}^{nqp} 
+\left( u_{h}(\xi_{j},\eta_{j}) - u(x_{j},y_{j})
+\right)^{2} \: det(J(\xi_{j},\eta_{j})) \: w_{j}  \right)^{1/2}
+\end{equation}
+
+\begin{equation}
+\parallel p_{h}-p\parallel_{L^{2}} =
+\left( \sum_{i=1}^{\#el} \sum_{j=1}^{nqp} 
+\left( p_{h}(\xi_{j},\eta_{j}) - p(x_{j},y_{j})
+\right)^{2} \: det(J(\xi_{j},\eta_{j})) \: w_{j}  \right)^{1/2}
+\end{equation}
+
+infine per gli sforzi
+\begin{equation}
+\parallel \sigma_{h}-\sigma \parallel_{L^{2}} =
+\left( \sum_{i=1}^{\#el} \sum_{j=1}^{nqp} 
+\left[ 
+(J(\xi_{j},\eta_{j}))\hat{\sigma}_{h}(\xi_{j},\eta_{j})/det(J(\xi_{j},\eta_{j})) - \sigma(x_{j},y_{j})
+\right]^{2} \: det(J(\xi_{j},\eta_{j})) \: w_{j}  \right)^{1/2}
+\end{equation}

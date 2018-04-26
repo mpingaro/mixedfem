@@ -1,0 +1,81 @@
+\section{Reduced symmetry formulation}
+First of all, we recall the weak formulation of the elasticity system using the weak imposition of the symmetry of the stress tensor.
+We define $\mathbb{M}$ and $\mathbb{S}$ for the spaces of $2\times 2$ matrices and symmetric matrices, respectively.
+\begin{equation}
+A\bm{\sigma} = \frac{1}{2\mu}\left( \bm{\sigma} - \frac{\lambda}{2\mu+2\lambda}\mbox{tr}(\bm{\sigma})\bm{I}\right)\:, 
+\hspace{10pt} \bm{\sigma}\in \mathbb{M\:,} 
+\end{equation}
+
+
+
+
+
+
+First of all, we recall the equations governing the linear elastic problems.
+The classical theory of linear elasticity then requires that
+
+\begin{equation} \label{eq:equilibium_congruence}
+\begin{split}
+&\divsig = \bm{f} \hspace{10pt} \mbox{on } \Omega\:, \\
+&\strain = \grads\bu \hspace{17pt} \mbox{on } \Omega\:,
+\end{split}
+\end{equation}
+where $\bsigma$ is the Cauchy stress tensor, $\strain$ is the strain tensor equal to the symmetric part of the displacement field, i.e.:
+\begin{equation} \label{eq:symmetric_gradient}
+\grads\bu =
+\left[
+\begin{array}{cc}
+u_{1,1} & \frac{1}{2}(u_{1,2}+u_{2,1}) \\
+\frac{1}{2}(u_{1,2}+u_{2,1}) & u_{2,2} 
+\end{array}
+\right]\:,
+\end{equation}
+where $u_{i,j}$ indicate the derivative of the $i$ component respect to the $j$ direction. 
+On the boundary we have
+\begin{equation} \label{eq:equilibium_congruence}
+\begin{split}
+&\bu = \bar{\bu} \hspace{28pt} \mbox{on } \Gamma_{D}\:, \\
+&\bsigma\cdot \bm{n} = \bm{t} \hspace{16pt} \mbox{on } \Gamma_{N}\:,
+\end{split}
+\end{equation}
+
+\begin{equation}	\label{eq:legame}
+\bsigma = \Ctens : \strain\:,
+\end{equation}
+where $\Ctens$ is a fourth order tensor. The equation \eqref{eq:legame} can be recall in terms of the Lamé constant in the following:
+\begin{equation}
+\bsigma = 2\mu\strain + \lambda \mbox{tr}(\strain)\bm{I}\:,
+\end{equation}
+where $\mu$ and $\lambda$ are the Lamé constants and tr($\strain$) is the trace of the strain tensor and $\bm{I}$ is the identity matrix.
+
+Let $\Omega \in R^{2}$ and $\bm{f}\in L^{2}(\Omega)$
+\begin{equation} \label{eq:weak_form_0}
+\left\lbrace
+\begin{split}
+&\intd \strain : \btau \dd - \intd \grads\bu : \btau \dd = 0\:,\\
+&\intd \divsig \cdot \bv \dd = \intd \bm{f}\cdot\bv\dd\:,
+\end{split}
+\right.
+\end{equation}
+
+\begin{equation} \label{eq:weak_form_1}
+\left\lbrace
+\begin{split}
+&\intd \Ctens^{-1}\bsigma : \btau \dd - 
+\intd \gradu : \btau \dd + \intd \bgamma : \btau\skw \dd &= 0\:,\\
+&\intd \divsig \cdot \bv \dd &= \intd \bm{f}\cdot\bv\dd\:,\\
+&\intd \bsigma\skw : \bdelta \dd &= 0 \:,
+\end{split}
+\right.
+\end{equation}
+
+
+\begin{equation} \label{eq:weak_form_2}
+\left\lbrace
+\begin{split}
+&\intd \Ctens^{-1}\bsigma : \btau \dd + \intd \bu \cdot \divtau \dd + \intd \bgamma : \btau\skw \dd &= \intbd \left[\btau \cdot \bm{n} \right] \cdot \bu_{d} \db\:,\\
+&\intd \divsig \cdot \bv \dd &= \intd \bm{f}\cdot\bv\dd\:,\\
+&\intd \bsigma\skw : \bdelta \dd &= 0 \:,
+\end{split}
+\right.
+\end{equation}

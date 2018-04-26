@@ -4,7 +4,7 @@ function [AELEM,BELEM,CELEM,b_load] = stiffness_abf(point,f,s,cf)
 
 %[gauss_p, gauss_w, npg] = quadrature_9() ;
 %[gauss_p, gauss_w, npg] = quadrature_16() ;
-[gauss_w, gauss_p] = GaussQuad2D(9,9);
+[gauss_w, gauss_p] = GaussQuad2D(4,4);
 npg = size(gauss_w,1);
 
 
@@ -31,8 +31,8 @@ for k = 1:npg
     DJ = J(1,1)*J(2,2)-J(1,2)*J(2,1) ;
     % Inverse of Jacobian Matrix
     JJ(1,1) = J(2,2)/DJ ;  
-    JJ(1,2) = -J(2,1)/DJ ;
-    JJ(2,1) = -J(1,2)/DJ ; 
+    JJ(1,2) = -J(1,2)/DJ ;
+    JJ(2,1) = -J(2,1)/DJ ; 
     JJ(2,2) = J(1,1)/DJ ;
       
     %% --- Stress
@@ -41,13 +41,13 @@ for k = 1:npg
     sig(:,3) = J*[ 0; 0.5+0.5*y]/DJ ;                % Shape 3 RT0
     sig(:,4) = J*[-0.5+0.5*x; 0]/DJ ;                % Shape 4 RT0
 
-    sig(:,5) = JJ*[ 2*x*(y^2-1); 2*y*(x^2-1) ] ;                  % Bouble function      
-    sig(:,6) = JJ*[ -2*x*(y-y^3+y^2-1); (1-3*y^2+2*y)*(1-x^2) ] ; % new bouble function component 1
-    sig(:,7) = JJ*[ (1-3*x^2+2*x)*(1-y^2); -2*y*(x-x^3+x^2-1) ] ; % new bouble function conponent 2
+    sig(:,5) = [ 2*x*(y^2-1), 2*y*(x^2-1) ]*JJ ;                  % Bouble function      
+    sig(:,6) = [ -2*x*(y-y^3+y^2-1), (1-3*y^2+2*y)*(1-x^2) ]*JJ ; % new bouble function component 1
+    sig(:,7) = [ (1-3*x^2+2*x)*(1-y^2), -2*y*(x-x^3+x^2-1) ]*JJ ; % new bouble function conponent 2
 
     % Bolle aggiuntive ABF
-    sig(:,8) = JJ*[1-x^2; 0] ;
-    sig(:,9) = JJ*[0; 1-y^2] ;
+    sig(:,8) = [1-x^2; 0] ;
+    sig(:,9) = [0; 1-y^2] ;
 
     % Tensor functions 
     sigt = zeros(2,2,15) ;
@@ -118,7 +118,7 @@ for k = 1:npg
     for i = 1:15
         for j = 1:4
             CELEM(i,j) = CELEM(i,j) +...
-            rot(1,j)*( sigt(1,2,i) - sigt(2,1,i) )*w*DJ ;
+            rot(1,j)*( sigt(2,1,i) - sigt(1,2,i) )*w*DJ ;
         end
     end
 

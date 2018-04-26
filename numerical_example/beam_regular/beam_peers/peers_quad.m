@@ -19,7 +19,7 @@
 % ----------------------------------------------------------------------- %
 
 %% INPUT DATI 
-clear all; close all; clc;
+clear; close all; clc;
 % Geometry
 length  =   4;                      % lunghezza trave
 heigth  =   1 ;                     % altezza trave

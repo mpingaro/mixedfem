@@ -27,14 +27,14 @@
  \begin{axis}[width=0.45\textwidth, height=0.45\textwidth,
   legend style={anchor=south, at={(0.5, 1.07)}, draw=none, font=\scriptsize},
   legend columns=2,
-  xlabel={Number of Elements per Side},
-  ylabel={Vertical displacement of point A},
-  xmin=0, xmax=32,
-  ymin=5, ymax=9,
-  ytick={5, 6, 7, 8, 9},
-  yticklabels={$5$, $6$, $7$, $8$, $9$},
-  xtick={0, 2, 4, 8, 16, 32},
-  xticklabels={$0$, $2$, $4$, $8$, $16$, $32$},
+  xlabel={\small Number of Elements per Side},
+  ylabel={\small Vertical displacement of point A},
+  xmin=0, xmax=66,
+  ymin=10, ymax=16,
+  ytick={5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16},
+  yticklabels={$5$, $6$, $7$, $8$, $9$, $10$, $11$, $12$, $13$, $14$, $15$, $16$},
+  xtick={0, 2, 4, 8, 16, 32, 64},
+  xticklabels={$0$, $2$, $4$, $8$, $16$, $32$. $64$},
  ]
  % Reference
  %\addplot[black, ultra thick] coordinates{
@@ -42,26 +42,27 @@
  %(15000, 1.8248e-5)
  %}; 
  %\addlegendentry{Reference} 
+ 
  %
- \addplot[red, mark=+, thick, mark options={solid}]
+ \addplot[red, mark=o, thick, mark options={solid}]
  table [x index={0}, y index={1}]
- {figure/cook/cook_regular_abf_ver1.txt};
- \addlegendentry{ABF \textbf{2B} (mixed)}
+ {figure/cook/cook_regular_abf_2b.txt};
+ \addlegendentry{ABFQ2B} 
  %
- \addplot[blue, mark=x, thick, mark options={solid}]
+ \addplot[blue, mark=o, thick, mark options={solid}]
  table [x index={0}, y index={1}]
- {figure/cook/cook_regular_abf_ver2.txt};
- \addlegendentry{ABF \textbf{2B}}
+ {figure/cook/cook_regular_abf_2bm.txt};
+ \addlegendentry{ABFQ2BM}
  %
- \addplot[green3, mark=o, thick, mark options={solid}]
+ \addplot[green, mark=triangle, thick, mark options={solid}]
  table [x index={0}, y index={1}]
- {figure/cook/cook_regular_abf_ver3_ver1.txt};
- \addlegendentry{ABF \textbf{1B} (version 1)}
- %
+ {figure/cook/cook_regular_abf_1b_v1.txt};
+ \addlegendentry{ABFQ1B (v.1)}
+% %
  \addplot[green3, mark=o, thick, dashed, mark options={solid}]
  table [x index={0}, y index={1}]
- {figure/cook/cook_regular_abf_ver3_ver2.txt};
- \addlegendentry{ABF \textbf{1B} (version 2)}
+ {figure/cook/cook_regular_abf_1b_v2.txt};
+ \addlegendentry{ABFQ1B (v.2)}
  % 
  \end{axis}
 \end{tikzpicture}

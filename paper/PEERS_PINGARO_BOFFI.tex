@@ -1,0 +1,141 @@
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{bm}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{fp}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+\usetikzlibrary{arrows}
+\tikzset{>=latex}
+
+% Color definition
+\definecolor{green2}{RGB}{154, 205, 50}
+\definecolor{green3}{RGB}{141, 182, 0}
+\definecolor{blue2}{RGB}{0, 102, 255}
+\definecolor{lightgreen}{RGB}{178,255,102}
+
+% New command
+\input{newcommand}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times,authoryear]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+%% \usepackage{lineno}
+
+\journal{Computers \& Mathematics with Applications}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \address{Address\fnref{label3}}
+%% \fntext[label3]{}
+
+\title{On the extension of mixed finite element PEERS for linear elasticity with a weakly imposed symmetry condition}
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \address[label1]{}
+%% \address[label2]{}
+
+\author{D. Boffi\fnref{label1}\corref{cor1}}
+\ead{daniele.boffi@unipv.it}
+\ead[url]{http://www-dimat.unipv.it/boffi}
+\author{M. Pingaro\fnref{label2}}
+\ead{marco.pingaro@uniroma1.it}
+
+\fntext[label1]{Dipartimento di Matematica; Università di Pavia; 27100 Pavia; Italy}
+\fntext[label2]{Department of Structural and Geotechnical Engineering; Sapienza University of Rome; via Gramsci 53; Rome; Italy}
+
+\cortext[cor1]{Corresponding author.}
+
+%% Abstract
+\input{abstract}
+
+%% Keyword
+\input{keyword}
+
+\end{frontmatter}
+
+%%\linenumbers
+
+%% main text
+
+%% Introduction
+\input{introduction}
+
+%% Formulation 
+\input{formulation}
+
+%% Quad PEERS Element
+\input{peers_element}
+
+%% Numerical Examples
+\input{numerical_examples}
+
+%% Conclusions
+\input{conclusions}
+
+%% Bibliography
+\input{bibliography}
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+%% \appendix
+
+%% \section{}
+%% \label{}
+
+\end{document}
+
+\endinput
+%%
+%% End of file

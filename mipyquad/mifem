@@ -1,0 +1,127 @@
+#!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+"""
+Created on April 27 2017
+
+@author: Dr. Marco Pingaro 
+@ref   : La Spienza University of Rome
+
+@Des   : New Mixed Finite Element solver 
+
+Python Versio 2.7
+"""
+import sys
+import time
+from optparse import OptionParser
+from PathGen import GenPathFolders
+
+# Call structure Path
+path = GenPathFolders()    # Generation of path folders
+# Fix path folders
+sys.path.append(path.FOR)
+sys.path.append(path.FUN)
+sys.path.append(path.IO)
+sys.path.append(path.SOL)
+sys.path.append(path.UT)
+
+# Call classes
+from Print import Print 
+from Reader import Reader
+from VEMWriter import Writer
+from Functions import Functions
+from Solver import Solver
+from Assembler import Assembler
+from PostProcess import PostProcess
+
+##
+# Input File
+##
+start_time_t = time.time()
+
+parser = OptionParser()
+parser.add_option("-s", "--silent", action="store_true", dest="silent", default=False, 
+                  help="don't print informations programs")
+parser.add_option("-f", "--file", dest="filename", help="Input FILE", metavar="FILE")
+
+(options, args) = parser.parse_args()
+
+name_f = options.filename
+
+##
+# Plint Logo 
+##
+if options.silent==False:
+    Print.PrintLogo()
+
+##
+# START PROGRAM
+##
+
+
+##
+# Call Reader Input file
+##
+analysis = VEMReader.InputFile(name_f)
+if options.silent==False:
+    Print.start(analysis)
+
+##
+# Generation Geometry Structure
+##
+# Read Geometry
+msh = VEMReader.GeometryMesh(analysis.fname_geo,analysis.dim_phy,analysis.TypeEl)
+
+# Read Boundary conditions
+msh = VEMReader.BoundaryConditions(analysis.fname_BCd,analysis.dim_phy,msh) 
+
+# Compute Area and the Centroid of the polygons 
+msh = Functions.GeometryVariables(msh,analysis)
+
+##
+# Call Element and Assembler
+##
+stiffK, rhs, PiN_s = Assembler.StandardFEM(options,msh,analysis)
+
+##
+# Call Solver
+##
+U = Solver.LinearSolver(options,msh,analysis,stiffK,rhs)
+
+##
+# Post Process
+##
+results = PostProcess.Compute(msh,analysis,U,PiN_s)
+
+##
+# Writer results
+#
+if options.silent==False:
+    print("Writing output")
+    start_time = time.time()
+
+#VEMWriter.GeometryVTK(msh,path,analysis,results)
+VEMWriter.ResultsVTK(msh,path,analysis,results)
+#VEMWriter.IntegralResultsTXT(msh,path,analysis,results)
+VEMWriter.ResultsTXT(msh,path,analysis,results)
+
+if options.silent==False:
+    end_time = time.time()
+    secs = end_time - start_time    
+    print("  Elapsed time .................................: %.2e Seconds" % secs)
+
+##
+# Additional writing
+##
+
+##
+# END PROGRAM
+##
+if options.silent==False:
+
+    end_time_t = time.time()
+    secs = end_time_t -start_time_t
+
+    print("\n")
+    print("  Total Elapsed time ...........................: %.2e Seconds" % secs)
+
+    Print.finish()
